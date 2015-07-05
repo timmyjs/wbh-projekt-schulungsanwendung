@@ -1,1 +1,2 @@
 # wbh-projekt-schulungsanwendung
+Beispieltext
