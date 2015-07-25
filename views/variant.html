@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<?php partial('head', array('title' => 'Content')); ?>
+	</head>
+	<body>
+		<?php component('Example', 'variant', true, true, 'nav'); ?>
+		<?php component('Example', 'variant', 'blue'); ?>
+		<?php component('Example', 'variant', 'gray', array('data-color'=>'gray')); ?>
+		<?php component('Example', 'variant', 'blue', array('data-color'=>'blue'), 'div'); ?>
+		<?php component('Example', 'variant', array('gray', 'big'), array('data-color'=>'gray', 'data-weekday'=>date('l')), 'article'); ?>
+		<?php partial('foot'); ?>
+	</body>
+</html>
