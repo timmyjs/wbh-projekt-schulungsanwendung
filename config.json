@@ -3,7 +3,6 @@
 		"app.css": [
 			"+assets/css/variables.*",
 			"+assets/css/mixins.less",
-			"!**/somefile.*",
 			"!components/modules/Test*/*",
 			"assets/css/cssreset.css",
 			"assets/css/*.*",
@@ -11,7 +10,6 @@
 			"components/modules/*/css/skins/*.*"
 		],
 		"app.js": [
-			"!**/somefile.*",
 			"!components/modules/Test*/*",
 			"assets/js/jquery-2.1.4.min.js",
 			"assets/js/terrific-2.1.0.js",
