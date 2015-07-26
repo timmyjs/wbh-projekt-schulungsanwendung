@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<?php partial('head', array('title' => 'Home')); ?>
-	</head>
-	<body>
-		<?php component('Example', true, true); ?>
-		<?php component('Example', 'variant', 'blue'); ?>
-		<?php partial('foot'); ?>
-	</body>
-</html>
+<?php partial('head', array('title' => 'Home')); ?>
+	<?php component('Example', true, true); ?>
+	<?php component('Example', 'variant', 'blue'); ?>
+<?php partial('foot'); ?>
