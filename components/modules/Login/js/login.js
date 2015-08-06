@@ -15,14 +15,38 @@
 		},
 
 		on: function(callback) {
-			var mod = this,
-				$ctx = mod.$ctx;
+			this.bindAll(
+				'onSubmitLogin',
+				'onSubmitSuccess',
+				'onSubmitError'
+			);
+			this.$$('.js-login-form').on('submit', this.onSubmitLogin);
 			callback();
 		},
 
 		after: function() {
-			var mod = this,
-				$ctx = mod.$ctx;
+		},
+
+		onSubmitLogin: function(ev) {
+			ev.preventDefault();
+			var $form = $(ev.currentTarget);
+			$.ajax({
+				url: $form.attr('action'),
+				method: $form.attr('method'),
+				data: $form.serialize(),
+				success: this.onSubmitSuccess,
+				error: this.onSubmitError
+			});
+		},
+
+		onSubmitSuccess: function(data) {
+			if(data.success){
+				document.location.href = '/variant';
+			}
+		},
+
+		onSubmitError: function(err) {
+			console.log('onSubmitError xhr:', err);
 		}
 
 	});

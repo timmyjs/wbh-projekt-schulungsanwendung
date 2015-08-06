@@ -8,5 +8,11 @@
 					.'"success": true'
 				.'}';
 		break;
+		case 'login':
+			header('Content-Type: application/json; charset=utf-8');
+			echo '{'
+					.'"success": true'
+				.'}';
+		break;
 	}
 ?>
