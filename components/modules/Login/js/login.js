@@ -18,9 +18,11 @@
 			this.bindAll(
 				'onSubmitLogin',
 				'onSubmitLoginSuccess',
-				'onSubmitLoginError'
+				'onSubmitLoginError',
+				'resetError'
 			);
 			this.$('.js-login-form').on('submit', this.onSubmitLogin);
+			this.$('.js-input').on('change', this.resetError);
 			callback();
 		},
 
@@ -40,11 +42,25 @@
 		},
 
 		onSubmitLoginSuccess: function(data) {
-			console.log('success', data);
+			if(data.success){
+				document.location.href = 'mainmenu';
+			}else{
+				this.setError();
+			}
 		},
 
 		onSubmitLoginError: function(err) {
 			console.log('error', err);
+		},
+
+		setError: function() {
+			this.$('.js-form-group').addClass('has-error');
+			this.$('.js-error-text').removeClass('hidden');
+		},
+
+		resetError: function() {
+			this.$('.js-error-text').addClass('hidden');
+			this.$('.js-form-group').removeClass('has-error');
 		}
 
 	});

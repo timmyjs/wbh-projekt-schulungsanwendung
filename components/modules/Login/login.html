@@ -1,14 +1,15 @@
 <h2>Login</h2>
 <p>Ich bin ein Begrüßungstext. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique laudantium, laborum officiis repellat non delectus error animi quia magni corporis, ipsam architecto fuga repudiandae quo doloribus dolorum cum, ea quam.</p>
-<form action="" class="js-login-form clearfix" method="post">
-	<div class="form-group">
-		<input type="text" class="form-control" placeholder="Benutzername">
+<form action="/project/ajax.php?api=login" class="js-login-form clearfix" method="post">
+	<div class="js-form-group form-group">
+		<input type="text" class="form-control js-input" name="user" placeholder="Benutzername" required>
 	</div>
-	<div class="form-group">
-		<input type="password" class="form-control" placeholder="Passwort">
+	<div class="js-form-group form-group">
+		<input type="password" class="form-control js-input" name="password" placeholder="Passwort" required>
 	</div>
+	<p class="js-error-text text-danger hidden">Benutzername oder Passwort nicht korrekt. Bitte überprüfen Sie Ihre eingaben und versuchen es noch einmal</p>
 	<div class="pull-right">
 		<a href="#"><small>>Noch kein Account? Zur Registrierung.</small></a>
-		<button type="submit" class="btn btn-default">Login</button>
+		<button type="submit" class="btn btn-primary">Login</button>
 	</div>
 </form>
