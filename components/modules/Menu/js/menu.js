@@ -33,6 +33,7 @@
 				success: this.onGetUserDataSuccess,
 				error: this.onGetUserDataError
 			});
+			this.$('.js-ajax-loader').addClass('active');
 		},
 
 		onGetUserDataSuccess: function(data) {
