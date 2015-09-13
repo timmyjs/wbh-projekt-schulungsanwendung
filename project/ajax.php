@@ -14,6 +14,12 @@
 					.'"role": "admin"'
 				.'}';
 		break;
+		case 'registration':
+			header('Content-Type: application/json; charset=utf-8');
+			echo '{'
+					.'"success": false'
+				.'}';
+		break;
 		case 'recipes':
 			header('Content-Type: application/json; charset=utf-8');
 			echo '{'
