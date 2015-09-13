@@ -1,0 +1,47 @@
+<?php partial('head', array('title' => 'Home')); ?>
+<main class="container">
+	<div class="row">
+		<div class="col col-md-6 col-md-offset-3">
+			<div class="margin-bottom-large">
+				<h2>Registrieren</h2>
+				<p>Hier können Sie sich registrieren. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab sed repellat atque beatae, suscipit fugit maxime ipsam reprehenderit temporibus vero maiores, dicta, deserunt eos inventore. Vitae ipsa quisquam ut ab!</p>
+			</div>
+			<form action="/project/services/registration.php" method="POST">
+				<div class="row">
+					<div class="col-xs-12 form-group">
+						<label for="forename">Vorname</label>
+						<input class="form-control" type="text" name="forename" required />
+					</div>
+				</div>
+				<div class="row">
+				<div class="col-xs-12 form-group">
+					<label for="surename">Nachname</label>
+					<input class="form-control" type="text" name="surename" required />
+				</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 form-group">
+						<label for="email">E-Mail</label>
+						<input class="form-control" type="email" name="email" required />
+					</div>
+				</div>
+				<div class="row margin-bottom-large">
+					<div class="col-xs-6 form-group">
+						<label for="username">Benutzername</label>
+						<input class="form-control" type="text" name="username" required />
+					</div>
+					<div class="col-xs-6 form-group">
+						<label for="password">Passwort</label>
+						<input class="form-control" type="password" name="password" required />
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6 form-group col-xs-offset-6">
+						<button type="submit" class="btn btn-primary btn-block">Registrieren</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</main>
+<?php partial('foot'); ?>
