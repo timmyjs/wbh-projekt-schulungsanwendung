@@ -3,6 +3,7 @@
 
 	switch ($_REQUEST['api']) {
 		case 'example':
+		case 'submit-practice':
 			header('Content-Type: application/json; charset=utf-8');
 			echo '{'
 					.'"success": true'
@@ -19,6 +20,26 @@
 			echo '{'
 					.'"success": false'
 				.'}';
+		break;
+		case 'ingredients':
+			header('Content-Type: application/json; charset=utf-8');
+			echo '{'
+				.'"ingredients": ['
+					.'{'
+						.'"id": 1,'
+						.'"name": "Sahne"'
+					.'}, {'
+						.'"id": 2,'
+						.'"name": "Rum"'
+					.'}, {'
+						.'"id": 3,'
+						.'"name": "Cream of Coconut"'
+					.'}, {'
+						.'"id": 4,'
+						.'"name": "Ananassaft"'
+					.'}'
+				.']'
+			.'}';
 		break;
 		case 'recipes':
 			header('Content-Type: application/json; charset=utf-8');
@@ -45,6 +66,12 @@
 						.'}'
 					.']'
 				.'}';
-
+		break;
+		case 'practice-new-recipe':
+			header('Content-Type: application/json; charset=utf-8');
+			echo '{'
+					.'"name": "Pina Colada"'
+				.'}';
+		break;
 	}
 ?>
