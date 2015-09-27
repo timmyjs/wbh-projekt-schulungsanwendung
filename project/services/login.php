@@ -1,4 +1,5 @@
 <?php
+session_start();
        #Lesen der Login-Konfiguration
        #require_once('auth_config.php');
         
@@ -15,8 +16,8 @@
  
         
 	$sql_tpl = <<<SQL
-	SELECT password FROM user 
-	WHERE name = '{user}' 
+	SELECT PASSWORT FROM USER 
+	WHERE U_ID = '{user}' 
 SQL;
 	
 	$user = $_POST['user'];
