@@ -27,6 +27,9 @@ SQL;
 	$res = db_query($db, $sql_tpl, $args);
 
 	if($pw == $res[0]['password']){
+            //erfolgreiche Anmeldung - Session für den User wird erzeugt    
+            $_SESSION['U_ID'] = $_POST['user']; 
+                
 		header('Content-Type: application/json; charset=utf-8');
 		echo '{'
 				.'"success": true'
