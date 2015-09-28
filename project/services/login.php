@@ -26,7 +26,7 @@ SQL;
 	$args = array('{user}' => $user);
 	$res = db_query($db, $sql_tpl, $args);
 
-	if($pw == $res[0]['password']){
+	if($pw == $res[0]['PASSWORT']){
             //erfolgreiche Anmeldung - Session für den User wird erzeugt    
             $_SESSION['U_ID'] = $_POST['user']; 
                 
