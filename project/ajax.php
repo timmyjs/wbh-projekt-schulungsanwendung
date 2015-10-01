@@ -18,7 +18,7 @@
 		case 'registration':
 			header('Content-Type: application/json; charset=utf-8');
 			echo '{'
-					.'"success": false'
+					.'"success": true'
 				.'}';
 		break;
 		case 'ingredients':

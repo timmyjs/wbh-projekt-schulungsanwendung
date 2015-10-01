@@ -1,14 +1,14 @@
 (function($) {
 	'use strict';
 	/**
-	 * Registration module implementation
+	 * Forms module implementation
 	 *
 	 * @author Thomas May <thomas.may@namics.com>
 	 * @namespace Tc.Module
-	 * @class Registration
+	 * @class Forms
 	 * @extends Tc.Module
 	 */
-	Tc.Module.Registration = Tc.Module.extend({
+	Tc.Module.Forms = Tc.Module.extend({
 
 		init: function($ctx, sandbox, modId) {
 			this._super($ctx, sandbox, modId);
@@ -16,19 +16,18 @@
 
 		on: function(callback) {
 			this.bindAll(
-				'onSubmitRegistration',
-				'onSubmitRegistrationSuccess',
-				'onSubmitRegistrationError'
+				'onSubmitForm',
+				'onSubmitFormSuccess',
+				'onSubmitFormError'
 			);
-			console.log('Registration on');
-			this.$('.js-registration-form').on('submit', this.onSubmitRegistration);
+			this.$('.js-registration-form').on('submit', this.onSubmitForm);
 			callback();
 		},
 
 		after: function() {
 		},
 
-		onSubmitRegistration: function(ev) {
+		onSubmitForm: function(ev) {
 			this.$('.js-error-container').empty();
 			ev.preventDefault();
 			var $form = $(ev.currentTarget);
@@ -36,13 +35,13 @@
 				url: $form.attr('action'),
 				method: $form.attr('method'),
 				data: $form.serialize(),
-				success: this.onSubmitRegistrationSuccess,
-				error: this.onSubmitRegistrationError
+				success: this.onSubmitFormSuccess,
+				error: this.onSubmitFormError
 			});
 			this.$('.js-ajax-loader').addClass('active');
 		},
 
-		onSubmitRegistrationSuccess: function(data) {
+		onSubmitFormSuccess: function(data) {
 			if(data.success){
 				this.showSuccess();
 			}else{
@@ -51,7 +50,7 @@
 			this.$('.js-ajax-loader').removeClass('active');
 		},
 
-		onSubmitRegistrationError: function(err) {
+		onSubmitFormError: function(err) {
 			this.showError();
 		},
 
