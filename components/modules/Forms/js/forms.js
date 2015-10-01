@@ -20,7 +20,7 @@
 				'onSubmitFormSuccess',
 				'onSubmitFormError'
 			);
-			this.$('.js-registration-form').on('submit', this.onSubmitForm);
+			this.$('.js-form').on('submit', this.onSubmitForm);
 			callback();
 		},
 
@@ -55,11 +55,13 @@
 		},
 
 		showSuccess: function() {
-			this.$('.js-registration-form').html(this.template(this.$('#registration-success-template').html(), {}));
+			var data = { message: this.$ctx.data('success-message') };
+			this.$('.js-form').html(this.template(this.$('#success-template').html(), data))
 		},
 
 		showError: function() {
-			this.$('.js-error-container').html(this.template(this.$('#registration-error-template').html(), {}));
+			var data = { message: this.$ctx.data('error-message') };
+			this.$('.js-error-container').html(this.template(this.$('#error-template').html(), data));
 		}
 
 	});
