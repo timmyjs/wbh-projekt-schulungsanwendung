@@ -17,10 +17,12 @@
 		on: function(callback) {
 			this.bindAll(
 				'onSubmitLogin',
-				'onSubmitSuccess',
-				'onSubmitError'
+				'onSubmitLoginSuccess',
+				'onSubmitLoginError',
+				'resetError'
 			);
-			this.$$('.js-login-form').on('submit', this.onSubmitLogin);
+			this.$('.js-login-form').on('submit', this.onSubmitLogin);
+			this.$('.js-input').on('change', this.resetError);
 			callback();
 		},
 
@@ -34,19 +36,31 @@
 				url: $form.attr('action'),
 				method: $form.attr('method'),
 				data: $form.serialize(),
-				success: this.onSubmitSuccess,
-				error: this.onSubmitError
+				success: this.onSubmitLoginSuccess,
+				error: this.onSubmitLoginError
 			});
 		},
 
-		onSubmitSuccess: function(data) {
+		onSubmitLoginSuccess: function(data) {
 			if(data.success){
-				document.location.href = '/variant';
+				document.location.href = 'mainmenu';
+			}else{
+				this.setError();
 			}
 		},
 
-		onSubmitError: function(err) {
-			console.log('onSubmitError xhr:', err);
+		onSubmitLoginError: function(err) {
+			console.log('error', err);
+		},
+
+		setError: function() {
+			this.$('.js-form-group').addClass('has-error');
+			this.$('.js-error-text').removeClass('hidden');
+		},
+
+		resetError: function() {
+			this.$('.js-error-text').addClass('hidden');
+			this.$('.js-form-group').removeClass('has-error');
 		}
 
 	});

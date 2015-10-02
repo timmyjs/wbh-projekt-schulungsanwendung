@@ -1,0 +1,5 @@
+<?php partial('head', array('title' => 'Home')); ?>
+<main class="container">
+	<?php component('Menu', true, true, array('data-url'=>'/project/ajax.php?api=user')); ?>
+</main>
+<?php partial('foot'); ?>
