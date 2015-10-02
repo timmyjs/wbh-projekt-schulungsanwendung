@@ -3,6 +3,7 @@
 
 	switch ($_REQUEST['api']) {
 		case 'example':
+		case 'forgot-password':
 		case 'submit-practice':
 			header('Content-Type: application/json; charset=utf-8');
 			echo '{'

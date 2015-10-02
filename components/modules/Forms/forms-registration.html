@@ -2,7 +2,7 @@
 	<h2>Registrieren</h2>
 	<p>Hier können Sie sich registrieren. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab sed repellat atque beatae, suscipit fugit maxime ipsam reprehenderit temporibus vero maiores, dicta, deserunt eos inventore. Vitae ipsa quisquam ut ab!</p>
 </div>
-<form action="/project/ajax.php?api=registration" class="js-registration-form" method="POST">
+<form action="/project/ajax.php?api=registration" class="js-form" method="POST">
 	<div class="row">
 		<div class="col-xs-12 form-group">
 			<label for="forename">Vorname</label>
@@ -40,17 +40,5 @@
 	</div>
 </form>
 
-<script type="text/template" id="registration-success-template">
-	<a class="pull-right" href="/" target="_self">Zum Login</a>
-	<p>
-		<span class="glyphicon glyphicon-ok success-icon pull-left" aria-hidden="true"></span>
-		Herzlichen Glückwunsch, Sie wurden erfolgreich registriert, blabla
-	</p>
-</script>
-
-<script type="text/template" id="registration-error-template">
-	<p class="margin-bottom-large">
-		<span class="glyphicon glyphicon-remove error-icon pull-left" aria-hidden="true"></span>
-		Etwas ist schief gelaufen, bitte versuchen Sie es noch einmal, blabla
-	</p>
-</script>
+<?php partial('forms/success-template'); ?>
+<?php partial('forms/error-template'); ?>
