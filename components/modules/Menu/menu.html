@@ -1,3 +1,8 @@
+<?php 
+$userID = $_SESSION['U_ID'];
+$hash = $_SESSION['MD5_PW'];
+print "Hallo $userID! Dein Passwort erzeugt folgenden Hash-Wert: $hash";
+?>
 <div class="row margin-bottom">
 	<div class="col-sm-6 col-md-4">
 		<?php partial('teaser', array(

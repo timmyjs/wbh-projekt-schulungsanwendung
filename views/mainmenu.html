@@ -1,4 +1,6 @@
-<?php partial('head', array('title' => 'Home')); ?>
+<?php partial('head', array('title' => 'Home')); 
+session_start();
+?>
 <main class="container">
 	<?php component('Menu', true, true, array('data-url'=>'/project/ajax.php?api=user')); ?>
 </main>
