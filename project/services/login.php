@@ -10,7 +10,7 @@ session_start();
 	$connector = new DBConnector;
 	$db = $connector->connect();
         
-       
+       $_SERVER['ADMIN']=FALSE;
         
         //Abholen des gehashten Passwort      
 	$sql_tpl = <<<SQL
@@ -29,21 +29,24 @@ SQL;
 
 	$args = array('{user}' => $user);
 	$res = db_query($db, $sql_tpl, $args);
-
+        $res2 =db_query($db, $sql_adm, $args);
+        
         //Prüfen ob Adminrechte vorhanden sind, dann die Admin-Session erstellen
-        $res2 =db_query($db, $sql_adm, $args);          
-            if($res2=1){ 
-            $_SESSION['ADMIN'] = true;
-            }   
+                   
+            if(1 == $res2[0]['ADMIN']){ 
+            $_SESSION['ADMIN'] = TRUE;
+            } else {
+            $_SESSION['ADMIN'] = FALSE;
+            }
         
-        
+                
 	if($sec_pw == $res[0]['PASSWORT']){
             //erfolgreiche Anmeldung - Session für den User wird erzeugt    
             $_SESSION['U_ID'] = $_POST['user']; 
                  
             
-                
-		header('Content-Type: application/json; charset=utf-8');
+            
+          		header('Content-Type: application/json; charset=utf-8');
 		echo '{'
 				.'"success": true'
 			.'}';

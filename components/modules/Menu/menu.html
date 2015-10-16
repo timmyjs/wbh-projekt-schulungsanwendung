@@ -1,8 +1,11 @@
 <?php 
-$userID = $_SESSION['U_ID'];
-$admin = $_SESSION['ADMIN'];
-print "Hallo $userID!";
-print "Administrator: $admin";
+$user = $_SESSION['U_ID'];
+
+$isAdmin = $_SESSION['ADMIN'];
+print "Hallo $user!";
+if ($isAdmin==1){
+print " Sie sind als Administrator angemeldet!";
+}
 ?>
 <div class="row margin-bottom">
 	<div class="col-sm-6 col-md-4">
@@ -34,7 +37,9 @@ print "Administrator: $admin";
 <div class="row js-admin-menu-container">
 	<span class="ajax-loader js-ajax-loader"></span>
 </div>
-
+<?php if ($isAdmin == 0)
+{exit;
+} ?>
 <script type="text/template" id="admin-menu-template">
 	<div class="col-sm-6 col-md-4">
 		<?php partial('teaser', array(
