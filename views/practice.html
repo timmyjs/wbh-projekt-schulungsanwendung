@@ -1,4 +1,10 @@
-<?php partial('head', array('title' => 'Cocktails mixen')); ?>
+<?php partial('head', array('title' => 'Cocktails mixen')); 
+session_start();
+if (!isset($_SESSION['U_ID'])){
+header('Location: ./index.php');
+} else {
+
+?>
 <main class="container">
 	<h2>Cocktails mixen</h2>
 	<p>Hier kannst du Cocktails mixen. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt deserunt, et atque. Dolore voluptatum quos molestiae ut perferendis est, nesciunt quis aperiam obcaecati. Tenetur accusantium consectetur, quod libero velit dicta.</p>
@@ -7,4 +13,4 @@
 		'data-service-ingredients'=>'/project/ajax.php?api=ingredients'
 	)); ?>
 </main>
-<?php partial('foot'); ?>
+<?php } partial('foot'); ?>
