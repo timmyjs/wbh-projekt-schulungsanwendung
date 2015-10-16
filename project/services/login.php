@@ -19,6 +19,11 @@ session_start();
 	SELECT PASSWORT FROM USER 
 	WHERE U_ID = '{user}' 
 SQL;
+        
+        	$sql_tpl = <<<SQL
+	SELECT ADMIN FROM USER 
+	WHERE U_ID = '{user}' 
+SQL;
 	
 	$user = $_POST['user'];
 	$pw = $_POST['password'];
@@ -30,7 +35,9 @@ SQL;
 	if($sec_pw == $res[0]['PASSWORT']){
             //erfolgreiche Anmeldung - Session für den User wird erzeugt    
             $_SESSION['U_ID'] = $_POST['user'];
-            $_SESSION['MD5_PW']= $sec_pw; 
+            //Prüfen ob Admin, dann Admin-Session setzen
+            if()
+            
                 
 		header('Content-Type: application/json; charset=utf-8');
 		echo '{'
