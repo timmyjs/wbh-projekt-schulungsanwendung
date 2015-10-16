@@ -1,12 +1,8 @@
-<?php partial('head', array('title' => 'Home')); 
-session_start();
-if (!isset($_SESSION['U_ID'])){
-header('Location: ./index.php');
-} else {
-?>
+<?php partial('session'); ?>
+<?php partial('head', array('title' => 'Home')); ?>
 <main class="container">
 	<h2>Rezeptliste</h2>
 	<p>Hier kannst du alle verfügbaren Rezepte einsehen. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt deserunt, et atque. Dolore voluptatum quos molestiae ut perferendis est, nesciunt quis aperiam obcaecati. Tenetur accusantium consectetur, quod libero velit dicta.</p>
 	<?php component('Recipes', true, true, array('data-url'=>'/project/services/getRecipeList.php')); ?>
 </main>
-<?php } partial('foot'); ?>
+<?php partial('foot'); ?>
