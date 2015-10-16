@@ -1,6 +1,7 @@
 <?php partial('session'); ?>
 <?php partial('head', array('title' => 'Home')); ?>
 <main class="container">
+	<?php partial('logout'); ?>
 	<?php component('Menu', true, true, array('data-url'=>'/project/ajax.php?api=user')); ?>
 </main>
 <?php partial('foot'); ?>

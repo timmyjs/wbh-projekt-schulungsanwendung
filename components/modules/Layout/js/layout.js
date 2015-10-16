@@ -15,14 +15,15 @@
 		},
 
 		on: function(callback) {
-			var mod = this,
-				$ctx = mod.$ctx;
+			this.$('.js-logout').on('click', this.onClickLogout);
 			callback();
 		},
 
 		after: function() {
-			var mod = this,
-				$ctx = mod.$ctx;
+		},
+
+		onClickLogout: function() {
+			document.location.href = '/project/services/logout.php';
 		}
 
 	});

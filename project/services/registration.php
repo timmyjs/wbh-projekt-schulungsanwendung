@@ -1,4 +1,4 @@
-<?PHP
+	<?PHP
 	//Zuweisung der INPUT-VARIABLEN aus den Eingabefeldern durch Frontend:
 	$benutzername 	= $_POST['username'];
 	$email 			= $_POST['email'];
