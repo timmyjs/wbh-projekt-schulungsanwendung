@@ -2,6 +2,7 @@
 <?php partial('head', array('title' => 'Statistiken')); ?>
 <main class="container">
 	<?php partial('logout', array('headline' => 'Statistiken')); ?>
+	<p class="margin-bottom-large">Hier kannst du deine Statistiken sehen. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt deserunt, et atque. Dolore voluptatum quos molestiae ut perferendis est, nesciunt quis aperiam obcaecati. Tenetur accusantium consectetur, quod libero velit dicta.</p>
 	<?php component('Stats', true, true, array('data-url'=>'/project/ajax.php?api=stats')); ?>
 </main>
 <?php partial('foot'); ?>
