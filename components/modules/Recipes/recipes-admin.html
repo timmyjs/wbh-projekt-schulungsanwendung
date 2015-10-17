@@ -5,13 +5,12 @@
 	</div>
 </div>
 
-<!-- Modal -->
-<div class="modal fade js-delete-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade js-modal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" data-name="delete">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="myModalLabel">Löschen bestätigen</h4>
+				<h4 class="modal-title" id="deleteModalLabel">Löschen bestätigen</h4>
 			</div>
 			<div class="modal-body">
 				<p>Möchten Sie das Rezept für <b><span class="js-replace-recipe">recipe</span></b> wirklich löschen?</p>
@@ -25,6 +24,44 @@
 	</div>
 </div>
 
+<div class="modal fade js-modal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" data-name="edit">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="editModalLabel">
+					Rezept bearbeiten:
+					<small><span class="js-replace-recipe"></span></small>
+				</h4>
+			</div>
+			<div class="modal-body row">
+				<div class="col-sm-6">
+					<div class="list-group js-sortable js-connected">
+						<button type="button" class="list-group-item disabled" disabled>
+							<b>Verfügbare Zutaten:</b>
+						</button>
+						<button type="button" class="list-group-item">Foo 1</button>
+						<button type="button" class="list-group-item">Foo 2</button>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="list-group js-sortable js-connected">
+						<button type="button" class="list-group-item disabled" disabled>
+							<b>Ausgewählte Zutaten:</b>
+						</button>
+						<button type="button" class="list-group-item">Bar 1</button>
+						<button type="button" class="list-group-item">Bar 2</button>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Abbrechen</button>
+				<button type="button" class="btn btn-primary">Bestätigen</button>
+			</div>
+		</div>
+	</div>
+</div>
+
 <script type="text/template" id="recipe-list-template">
 	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 		{{ for(var i=0,recipe;i<recipes.length;i++) { }}
@@ -33,7 +70,7 @@
 				<div class="panel-heading" role="tab" id="heading{{= recipe.id }}">
 					<h4 class="panel-title">
 						<span class="action glyphicon glyphicon-trash pull-right js-delete-recipe" aria-hidden="true" data-recipe-name="{{= recipe.name }}" data-recipe-id="{{= recipe.id}}"></span>
-						<span class="action glyphicon glyphicon-pencil pull-right js-edit-recipe" aria-hidden="true"></span>
+						<span class="action glyphicon glyphicon-pencil pull-right js-edit-recipe" aria-hidden="true" data-recipe-name="{{= recipe.name }}" data-recipe-id="{{= recipe.id}}"></span>
 						<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{= recipe.id }}" aria-expanded="true" aria-controls="collapse{{= recipe.id }}">
 						{{= recipe.name }}
 						</a>
