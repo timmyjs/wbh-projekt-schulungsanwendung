@@ -1,7 +1,8 @@
 <?php partial('session'); ?>
-<?php partial('head', array('title' => 'Home')); ?>
+<?php partial('head', array('title' => 'Menü')); ?>
 <main class="container">
 	<?php partial('logout'); ?>
-	<?php component('Menu', true, true, array('data-url'=>'/project/ajax.php?api=user')); ?>
+	<?php component('Menu', true, true, array('data-url'=>'/project/ajax.php?api=user', 'data-is-admin'=>$GLOBALS['isAdmin']));
+	?>
 </main>
 <?php partial('foot'); ?>

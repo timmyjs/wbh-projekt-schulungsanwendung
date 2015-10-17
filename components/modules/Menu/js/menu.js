@@ -15,11 +15,7 @@
 		},
 
 		on: function(callback) {
-			this.bindAll(
-				'onGetUserDataSuccess',
-				'onGetUserDataError'
-			);
-			this.getUserData();
+			this.renderMenu();
 			// do not remove
 			callback();
 		},
@@ -27,24 +23,10 @@
 		after: function() {
 		},
 
-		getUserData: function() {
-			$.ajax({
-				url: this.$ctx.data('url'),
-				success: this.onGetUserDataSuccess,
-				error: this.onGetUserDataError
-			});
-			this.$('.js-ajax-loader').addClass('active');
-		},
-
-		onGetUserDataSuccess: function(data) {
-			if(data.role === 'admin'){
-				this.$('.js-admin-menu-container').html(this.template(this.$('#admin-menu-template').html(), data));
+		renderMenu: function() {
+			if(this.$ctx.data('is-admin')){
+				this.$('.js-admin-menu-container').html(this.template(this.$('#admin-menu-template').html()));
 			}
-		},
-
-		onGetUserDataError: function(err) {
-			this.$('.js-admin-menu-container').remove();
-			console.log('err', err);
 		}
 
 	});

@@ -4,4 +4,7 @@
 		header('Location: ./index.html');
 		exit;
 	}
+
+	// Speichert in die globale Variable "isAdmin" den Boolean als String, um im Markup wiederverwendet zu werden
+	$GLOBALS['isAdmin'] = (empty($_SESSION['ADMIN'])) ? 'false' : 'true';
 ?>

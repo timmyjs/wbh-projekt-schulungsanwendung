@@ -10,12 +10,6 @@
 					.'"success": true'
 				.'}';
 		break;
-		case 'user':
-			header('Content-Type: application/json; charset=utf-8');
-			echo '{'
-					.'"role": "admin"'
-				.'}';
-		break;
 		case 'registration':
 			header('Content-Type: application/json; charset=utf-8');
 			echo '{'
