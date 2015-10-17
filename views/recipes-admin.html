@@ -1,0 +1,8 @@
+<?php partial('session'); ?>
+<?php partial('head', array('title' => 'Rezepte verwalten')); ?>
+<main class="container">
+	<?php partial('logout', array('headline' => 'Rezepte verwalten')); ?>
+	<p class="margin-bottom-large">Hier können alle Rezepte eingesehen und bearbeitet werden. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt deserunt, et atque. Dolore voluptatum quos molestiae ut perferendis est, nesciunt quis aperiam obcaecati. Tenetur accusantium consectetur, quod libero velit dicta.</p>
+	<?php component('Recipes', 'admin', ['admin'], array('data-url'=>'/project/ajax.php?api=recipes')); ?>
+</main>
+<?php partial('foot'); ?>

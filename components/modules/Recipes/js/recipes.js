@@ -36,7 +36,8 @@
 		},
 
 		onGetRecipesSuccess: function(data) {
-			this.$ctx.html(this.template(this.$('#recipe-list-template').html(), data));
+			this.$('.js-recipe-list-container').html(this.template(this.$('#recipe-list-template').html(), data));
+			this.$ctx.trigger('rendered');
 		},
 
 		onGetRecipesError: function(err) {
