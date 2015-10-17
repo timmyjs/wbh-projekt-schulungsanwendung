@@ -2,8 +2,7 @@
 <?php partial('head', array('title' => 'Rezepte')); ?>
 <main class="container">
 	<?php partial('logout', array('headline' => 'Rezepte')); ?>
-	<h2>Rezeptliste</h2>
-	<p>Hier kannst du alle verfügbaren Rezepte einsehen. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt deserunt, et atque. Dolore voluptatum quos molestiae ut perferendis est, nesciunt quis aperiam obcaecati. Tenetur accusantium consectetur, quod libero velit dicta.</p>
+	<p class="margin-bottom-large">Hier kannst du alle verfügbaren Rezepte einsehen. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt deserunt, et atque. Dolore voluptatum quos molestiae ut perferendis est, nesciunt quis aperiam obcaecati. Tenetur accusantium consectetur, quod libero velit dicta.</p>
 	<?php component('Recipes', true, true, array('data-url'=>'/project/services/getRecipeList.php')); ?>
 </main>
 <?php partial('foot'); ?>
