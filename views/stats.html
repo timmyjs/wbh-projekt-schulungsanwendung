@@ -1,0 +1,7 @@
+<?php partial('session'); ?>
+<?php partial('head', array('title' => 'Statistiken')); ?>
+<main class="container">
+	<?php partial('logout', array('headline' => 'Statistiken')); ?>
+	<?php component('Stats', true, true, array('data-url'=>'/project/ajax.php?api=stats')); ?>
+</main>
+<?php partial('foot'); ?>

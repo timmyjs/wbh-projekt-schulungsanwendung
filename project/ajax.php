@@ -68,5 +68,12 @@
 					.'"name": "Pina Colada"'
 				.'}';
 		break;
+		case 'getStats':
+			header('Content-Type: application/json; charset=utf-8');
+			echo '{'
+					.'"labels": ["Banana", "Apples", "Grapes"],'
+					.'"series": [20, 20, 60]'
+				.'}';
+		break;
 	}
 ?>
