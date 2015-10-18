@@ -1,0 +1,26 @@
+<table class="table table-bordered table-striped table-responsive">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Name</th>
+			<th>X-Position</th>
+			<th>y-Position</th>
+			<th><?php /* do not remove, required for edit icon */ ?></th>
+		</tr>
+	</thead>
+	<tbody class="js-ingredients-table">
+	</tbody>
+</table>
+
+<script type="text/template" id="ingredients-table-template">
+	{{ for(var i=0,ingredient;i<ingredients.length;i++) { }}
+		{{ ingredient = ingredients[i]; }}
+		<tr>
+			<td>{{= ingredient.id }}</td>
+			<td>{{= ingredient.name }}</td>
+			<td>{{= ingredient.xPos }}</td>
+			<td>{{= ingredient.yPos }}</td>
+			<td><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></td>
+		</tr>
+	{{ } }}
+</script>
