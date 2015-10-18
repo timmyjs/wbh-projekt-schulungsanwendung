@@ -29,14 +29,19 @@
 
 		getRecipes: function() {
 			$.ajax({
-				url: this.$ctx.data('url'),
+				url: this.$ctx.data('service-recipes'),
 				success: this.onGetRecipesSuccess,
 				error: this.onGetRecipesError
 			});
 		},
 
 		onGetRecipesSuccess: function(data) {
-			this.$('.js-recipe-list-container').html(this.template(this.$('#recipe-list-template').html(), data));
+			this.recipes = data;
+			this.renderRecipeList();
+		},
+
+		renderRecipeList: function() {
+			this.$('.js-recipe-list-container').html(this.template(this.$('#recipe-list-template').html(), this.recipes));
 			this.$ctx.trigger('rendered');
 		},
 

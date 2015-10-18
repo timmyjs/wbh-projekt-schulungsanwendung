@@ -36,21 +36,13 @@
 			</div>
 			<div class="modal-body row">
 				<div class="col-sm-6">
-					<div class="list-group js-sortable js-connected">
-						<button type="button" class="list-group-item disabled" disabled>
-							<b>Verfügbare Zutaten:</b>
-						</button>
-						<button type="button" class="list-group-item">Foo 1</button>
-						<button type="button" class="list-group-item">Foo 2</button>
+					<div class="list-group js-sortable js-connected js-all-ingredients-list-container">
+						<?php /* all ingredients list */ ?>
 					</div>
 				</div>
 				<div class="col-sm-6">
-					<div class="list-group js-sortable js-connected">
-						<button type="button" class="list-group-item disabled" disabled>
-							<b>Ausgewählte Zutaten:</b>
-						</button>
-						<button type="button" class="list-group-item">Bar 1</button>
-						<button type="button" class="list-group-item">Bar 2</button>
+					<div class="list-group js-sortable js-connected js-current-ingredients-list-container">
+						<?php /* current ingredients list */ ?>
 					</div>
 				</div>
 			</div>
@@ -89,4 +81,14 @@
 			</div>
 		{{ } }}
 	</div>
+</script>
+
+<script type="text/template" id="ingredients-list-template">
+	<button type="button" class="list-group-item disabled" disabled>
+		<b>{{= type }}</b>
+	</button>
+	{{ for(var i=0,ingredient;i<ingredients.length;i++) { }}
+		{{ ingredient = ingredients[i]; }}
+		<button type="button" class="list-group-item">{{= ingredient }}</button>
+	{{ } }}
 </script>

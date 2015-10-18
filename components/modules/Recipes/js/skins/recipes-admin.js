@@ -17,6 +17,8 @@
 		 */
 		this.on = function(callback) {
 			this.bindAll(
+				'onGetIngredientsSuccess',
+				'onGetIngredientsError',
 				'registerClickListener',
 				'onDeleteRecipe',
 				'onEditRecipe',
@@ -26,6 +28,7 @@
 			);
 			this.initSortable();
 			this.initModal();
+			this.getIngredients();
 			this.$ctx.on('rendered', this.registerClickListener);
 			//calling parent method
 			parent.on(callback);
@@ -51,6 +54,22 @@
 					show: false
 				});
 			});
+		};
+
+		this.getIngredients = function() {
+			$.ajax({
+				url: this.$ctx.data('service-ingredients'),
+				success: this.onGetIngredientsSuccess,
+				error: this.onGetIngredientsError
+			});
+		};
+
+		this.onGetIngredientsSuccess = function(data) {
+			this.ingredients = data;
+		};
+
+		this.onGetIngredientsError = function(err) {
+			console.log('err', err);
 		};
 
 		this.registerClickListener = function() {
@@ -85,9 +104,36 @@
 		};
 
 		this.onEditRecipe = function(ev) {
-			var $modal = this.$modal.edit;
-			$modal.find('.js-replace-recipe').text($(ev.currentTarget).data('recipe-name'));
+			var $el = $(ev.currentTarget),
+				$modal = this.$modal.edit;
+			this.renderIngredientLists($el.data('recipe-id'));
+			$modal.find('.js-replace-recipe').text($el.data('recipe-name'));
 			$modal.modal('show');
+		};
+
+		this.renderIngredientLists = function(recipeId) {
+			var currentIngredients = [],
+				allIngredients = [],
+				data = {},
+				addIt;
+
+			parent.recipes.recipes.some(function(item) {
+				if(recipeId === item.id) return currentIngredients = item.ingredients;
+			});
+
+			this.ingredients.ingredients.forEach(function(item) {
+				addIt = true;
+				currentIngredients.forEach(function(name) {
+					if(item.name === name) addIt = false;
+				});
+				if(addIt) allIngredients.push(item.name);
+			});
+
+			data = { type: 'Ausgewählte Zutaten', ingredients: currentIngredients };
+			this.$('.js-current-ingredients-list-container').html(this.template(this.$('#ingredients-list-template').html(), data));
+
+			data = { type: 'Verfügbare Zutaten', ingredients: allIngredients };
+			this.$('.js-all-ingredients-list-container').html(this.template(this.$('#ingredients-list-template').html(), data));
 		};
 	};
 }(Tc.$));
