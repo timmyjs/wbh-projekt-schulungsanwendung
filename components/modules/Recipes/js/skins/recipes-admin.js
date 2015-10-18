@@ -24,9 +24,11 @@
 				'onEditRecipe',
 				'onConfirmDeletion',
 				'onDeleteRecipeSuccess',
-				'onDeleteRecipeError'
+				'onDeleteRecipeError',
+				'onConfirmEditing',
+				'onEditRecipeSuccess',
+				'onEditRecipeError'
 			);
-			this.initSortable();
 			this.initModal();
 			this.getIngredients();
 			this.$ctx.on('rendered', this.registerClickListener);
@@ -95,7 +97,7 @@
 		};
 
 		this.onDeleteRecipeSuccess = function() {
-			this.$modal.modal('hide');
+			this.$modal.delete.modal('hide');
 			parent.getRecipes();
 		};
 
@@ -106,19 +108,23 @@
 		this.onEditRecipe = function(ev) {
 			var $el = $(ev.currentTarget),
 				$modal = this.$modal.edit;
-			this.renderIngredientLists($el.data('recipe-id'));
+			this.currentRecipeId = $el.data('recipe-id');
+			this.renderIngredientLists();
+			this.initSortable();
 			$modal.find('.js-replace-recipe').text($el.data('recipe-name'));
+			$modal.find('.js-edit-it').on('click', this.onConfirmEditing);
 			$modal.modal('show');
 		};
 
-		this.renderIngredientLists = function(recipeId) {
-			var currentIngredients = [],
+		this.renderIngredientLists = function() {
+			var that = this,
+				currentIngredients = [],
 				allIngredients = [],
 				data = {},
 				addIt;
 
 			parent.recipes.recipes.some(function(item) {
-				if(recipeId === item.id) return currentIngredients = item.ingredients;
+				if(that.currentRecipeId === item.id) return currentIngredients = item.ingredients;
 			});
 
 			this.ingredients.ingredients.forEach(function(item) {
@@ -135,5 +141,40 @@
 			data = { type: 'Verfügbare Zutaten', ingredients: allIngredients };
 			this.$('.js-all-ingredients-list-container').html(this.template(this.$('#ingredients-list-template').html(), data));
 		};
+
+		this.onConfirmEditing = function() {
+			var data = this.getEditedRecipe();
+			$.ajax({
+				url: '/project/ajax.php?api=editRecipe',
+				type: 'POST',
+				data: data,
+				success: this.onEditRecipeSuccess,
+				error: this.onEditRecipeError
+			});
+		};
+
+		this.getEditedRecipe = function() {
+			return {
+				recipe: this.currentRecipeId,
+				ingredients: this.getSelectedIngredients()
+			};
+		};
+
+		this.getSelectedIngredients = function() {
+			var arr = [];
+			this.$('.js-current-ingredients-list-container button:not(:disabled)').each(function(i, el) {
+				arr.push($(el).text());
+			});
+			return arr;
+		};
+
+		this.onEditRecipeSuccess = function() {
+			this.$modal.edit.modal('hide');
+			parent.getRecipes();
+		};
+
+		this.onEditRecipeError = function() {
+			console.log('error', err);
+		}
 	};
 }(Tc.$));
