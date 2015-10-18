@@ -1,5 +1,23 @@
 <?php partial('session'); ?>
 <?php partial('head', array('title' => 'Statistiken')); ?>
+   <?php          
+        require_once '.\project\services\DBConnector.php';
+        require_once '.\project\services\DBFunctions.inc';
+
+        $connector = new DBConnector;
+        $db = $connector->connect();
+                        //Abholen der User-Einträge
+                        $sql_usr = "SELECT U_ID FROM USER";
+                        $ausgabe_usr = mysqli_query($db, $sql_usr);
+                        
+                        //Testausgabe der abgeholten Werte
+                        while($row = mysqli_fetch_object($ausgabe_usr))
+                        { 
+                        print "$row->U_ID<br>";
+                        }                         
+       
+?>
+
 <main class="container">
 	<?php partial('logout', array('headline' => 'Statistiken')); ?>
 	<p class="margin-bottom-large">Hier kannst du deine Statistiken sehen. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt deserunt, et atque. Dolore voluptatum quos molestiae ut perferendis est, nesciunt quis aperiam obcaecati. Tenetur accusantium consectetur, quod libero velit dicta.</p>

@@ -1,3 +1,5 @@
+
+
 <div class="row">
 	<div class="col-sm-10">
 		<form action="/project/ajax.php?api=getStats" class="form-horizontal js-form" method="GET">
@@ -6,6 +8,11 @@
 				<div class="col-sm-10">
 					<select class="form-control" name="stats" <?php if(!$_SESSION['ADMIN']) { ?>readonly<?php } ?>>
 						<option value="<?= $_SESSION['U_ID']; ?>" selected><?= $_SESSION['U_ID']; ?></option>
+                                                <?php                                                
+                                                while($row = mysqli_fetch_object($ausgabe_usr)) {?>
+                                                <option value="<?= $row->U_ID; ?>" selected><?= $row->U_ID; ?></option> 
+                                                      <?php } ?>
+                                            
 					</select>
 				</div>
 			</div>
