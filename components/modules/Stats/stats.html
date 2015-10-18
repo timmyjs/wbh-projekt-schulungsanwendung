@@ -6,7 +6,7 @@
 			<div class="form-group">
 				<label for="user" class="col-sm-2 control-label">Benutzer auswählen:</label>
 				<div class="col-sm-10">
-					<?php if(!$SESSION['ADMIN']) { ?>
+					<?php if(!$_SESSION['ADMIN']) { ?>
 
 						<select class="form-control" name="stats" readonly>
 							<option value="<?= $_SESSION['U_ID']; ?>" selected><?= $_SESSION['U_ID']; ?></option>
