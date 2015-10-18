@@ -1,21 +1,13 @@
 <?php partial('session'); ?>
 <?php partial('head', array('title' => 'Statistiken')); ?>
-   <?php          
-        require_once '.\project\services\DBConnector.php';
-        require_once '.\project\services\DBFunctions.inc';
-
+   <?php
+        require_once './project/services/DBConnector.php';
+        require_once './project/services/DBFunctions.inc';
         $connector = new DBConnector;
         $db = $connector->connect();
-                        //Abholen der User-Einträge
-                        $sql_usr = "SELECT U_ID FROM USER";
-                        $ausgabe_usr = mysqli_query($db, $sql_usr);
-                        
-                        //Testausgabe der abgeholten Werte
-                        while($row = mysqli_fetch_object($ausgabe_usr))
-                        { 
-                        print "$row->U_ID<br>";
-                        }                         
-       
+        //Abholen der User-Einträge
+        $sql_usr = "SELECT U_ID FROM USER";
+        $GLOBALS['ALLUSER'] = mysqli_query($db, $sql_usr)
 ?>
 
 <main class="container">
