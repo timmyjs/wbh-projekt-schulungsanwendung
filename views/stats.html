@@ -7,12 +7,15 @@
         $db = $connector->connect();
         //Abholen der User-Einträge
         $sql_usr = "SELECT U_ID FROM USER";
-        $GLOBALS['ALLUSER'] = mysqli_query($db, $sql_usr)
+        $sql_rec = "SELECT NAME FROM REZEPTE";
+        $GLOBALS['ALLUSER'] = mysqli_query($db, $sql_usr);
+        $GLOBALS['ALLRECIPES'] = mysqli_query($db, $sql_rec);
 ?>
 
 <main class="container">
 	<?php partial('logout', array('headline' => 'Statistiken')); ?>
 	<p class="margin-bottom-large">Hier kannst du deine Statistiken sehen. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt deserunt, et atque. Dolore voluptatum quos molestiae ut perferendis est, nesciunt quis aperiam obcaecati. Tenetur accusantium consectetur, quod libero velit dicta.</p>
-	<?php component('Stats', true, true, array('data-url'=>'/project/ajax.php?api=stats')); ?>
+	<?php //component('Stats', true, true, array('data-url'=>'/project/ajax.php?api=stats')); ?>
+        <?php component('Stats', true, true, array('data-url'=>'/project/services/getStats.php')); ?>
 </main>
 <?php partial('foot'); ?>
