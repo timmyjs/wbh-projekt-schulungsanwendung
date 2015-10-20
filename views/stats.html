@@ -7,7 +7,7 @@
         $db = $connector->connect();
         //Abholen der User-Einträge
         $sql_usr = "SELECT U_ID FROM USER";
-        $sql_rec = "SELECT NAME FROM REZEPTE";
+        $sql_rec = "SELECT R_ID FROM REZEPTE";
         $GLOBALS['ALLUSER'] = mysqli_query($db, $sql_usr);
         $GLOBALS['ALLRECIPES'] = mysqli_query($db, $sql_rec);
 ?>

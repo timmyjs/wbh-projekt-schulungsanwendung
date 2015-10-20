@@ -31,8 +31,10 @@
 
 		getStats: function(ev) {
 			ev.preventDefault();
+			var $form = $(ev.currentTarget);
 			$.ajax({
-				url: $(ev.currentTarget).attr('action'),
+				url: $form.attr('action'),
+				data: $form.serialize(),
 				success: this.onGetStatsSuccess,
 				error: this.onGetStatsError
 			});
