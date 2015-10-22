@@ -22,12 +22,17 @@
 				'registerClickListener',
 				'onDeleteRecipe',
 				'onEditRecipe',
+				'onCreateRecipe',
 				'onConfirmDeletion',
 				'onDeleteRecipeSuccess',
 				'onDeleteRecipeError',
 				'onConfirmEditing',
 				'onEditRecipeSuccess',
-				'onEditRecipeError'
+				'onEditRecipeError',
+				'onConfirmCreate',
+				'onCreateRecipeSuccess',
+				'onCreateRecipeError',
+				'destroySortable'
 			);
 			this.initModal();
 			this.getIngredients();
@@ -41,20 +46,26 @@
 			parent.after();
 		};
 
-		this.initSortable = function() {
-			this.$('.js-sortable').sortable({
+		this.initSortable = function($el) {
+			$el.find('.js-sortable').sortable({
 				connectWith: '.js-connected',
 				items: ':not(:disabled)'
 			});
 		};
 
+		this.destroySortable = function(ev) {
+			$(ev.currentTarget).find('.js-sortable').sortable('destroy');
+		};
+
 		this.initModal = function() {
-			var that = this, $el;
+			var that = this, $el, name;
 			this.$('.js-modal').each(function(i, el) {
 				$el = $(el);
-				that.$modal[$el.data('name')] = $el.modal({
-					show: false
+				name = $el.data('name');
+				that.$modal[name] = $el.modal({
+					show: false,
 				});
+				that.$modal[name].on('hidden.bs.modal', that.destroySortable);
 			});
 		};
 
@@ -75,8 +86,10 @@
 		};
 
 		this.registerClickListener = function() {
+			var $createBtn = this.$('.js-create-recipe');
 			this.$('.js-delete-recipe').off().on('click', this.onDeleteRecipe);
 			this.$('.js-edit-recipe').off().on('click', this.onEditRecipe);
+			$createBtn.removeAttr('disabled').removeClass('disabled').on('click', this.onCreateRecipe);
 		};
 
 		this.onDeleteRecipe = function(ev) {
@@ -110,7 +123,7 @@
 				$modal = this.$modal.edit;
 			this.currentRecipeId = $el.data('recipe-id');
 			this.renderIngredientLists();
-			this.initSortable();
+			this.initSortable($modal);
 			$modal.find('.js-replace-recipe').text($el.data('recipe-name'));
 			$modal.find('.js-edit-it').on('click', this.onConfirmEditing);
 			$modal.modal('show');
@@ -136,14 +149,14 @@
 			});
 
 			data = { type: 'Ausgewählte Zutaten', ingredients: currentIngredients };
-			this.$('.js-current-ingredients-list-container').html(this.template(this.$('#ingredients-list-template').html(), data));
+			this.$('.js-selected-ingredients-list-container').html(this.template(this.$('#ingredients-list-template').html(), data));
 
 			data = { type: 'Verfügbare Zutaten', ingredients: allIngredients };
 			this.$('.js-all-ingredients-list-container').html(this.template(this.$('#ingredients-list-template').html(), data));
 		};
 
 		this.onConfirmEditing = function() {
-			var data = this.getEditedRecipe();
+			var data = this.getRecipeData();
 			$.ajax({
 				url: '/project/ajax.php?api=editRecipe',
 				type: 'POST',
@@ -153,21 +166,6 @@
 			});
 		};
 
-		this.getEditedRecipe = function() {
-			return {
-				recipe: this.currentRecipeId,
-				ingredients: this.getSelectedIngredients()
-			};
-		};
-
-		this.getSelectedIngredients = function() {
-			var arr = [];
-			this.$('.js-current-ingredients-list-container button:not(:disabled)').each(function(i, el) {
-				arr.push($(el).text());
-			});
-			return arr;
-		};
-
 		this.onEditRecipeSuccess = function() {
 			this.$modal.edit.modal('hide');
 			parent.getRecipes();
@@ -175,6 +173,60 @@
 
 		this.onEditRecipeError = function() {
 			console.log('error', err);
-		}
+		};
+
+		this.onCreateRecipe = function(ev) {
+			var $el = $(ev.currentTarget),
+				$modal = this.$modal.new,
+				data = {};
+
+			data = { type: 'Ausgewählte Zutaten', ingredients: [] };
+			this.$('.js-selected-ingredients-list-container').html(this.template(this.$('#ingredients-list-template').html(), data));
+
+			data = { type: 'Alle Zutaten', ingredients: this.ingredients.ingredients };
+			this.$('.js-all-ingredients-list-container').html(this.template(this.$('#ingredients-list-template').html(), data));
+
+			this.initSortable($modal);
+			this.$('.js-form').on('submit', this.onConfirmCreate);
+			$modal.modal('show');
+		};
+
+		this.onConfirmCreate = function(ev) {
+			ev.preventDefault();
+			var $form = $(ev.currentTarget),
+				data = this.getRecipeData($form.find('input[name=name]').val());
+			$.ajax({
+				url: $form.attr('action'),
+				type: $form.attr('method'),
+				data: data,
+				success: this.onCreateRecipeSuccess,
+				error: this.onCreateRecipeError
+			});
+		};
+
+		this.onCreateRecipeSuccess = function(data) {
+			this.$modal.new.modal('hide');
+			parent.getRecipes();
+		};
+
+		this.onCreateRecipeError = function(err) {
+			console.log('err', err);
+		};
+
+		this.getRecipeData = function(name) {
+			name = name || this.currentRecipeId;
+			return {
+				recipe: name,
+				ingredients: this.getSelectedIngredients()
+			};
+		};
+
+		this.getSelectedIngredients = function() {
+			var arr = [];
+			this.$('.js-selected-ingredients-list-container:visible button:not(:disabled)').each(function(i, el) {
+				arr.push($(el).text());
+			});
+			return arr;
+		};
 	};
 }(Tc.$));

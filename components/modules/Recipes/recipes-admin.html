@@ -1,3 +1,7 @@
+<button class="btn btn-default margin-bottom-small disabled js-create-recipe" type="button" disabled>
+	<span class="glyphicon glyphicon-plus"></span> Rezept hinzufügen
+</button>
+
 <div class="js-recipe-list-container">
 	<div class="js-loading-box">
 		<p><strong>Rezepte werden geladen, bitte einen Augenblick warten</strong></p>
@@ -36,12 +40,12 @@
 			</div>
 			<div class="modal-body row">
 				<div class="col-sm-6">
-					<div class="list-group js-sortable js-connected js-all-ingredients-list-container">
+					<div class="list-group js-sortable js-connected js-all-ingredients-list-container" data-sortable-group="editRecipe">
 						<?php /* all ingredients list */ ?>
 					</div>
 				</div>
 				<div class="col-sm-6">
-					<div class="list-group js-sortable js-connected js-current-ingredients-list-container">
+					<div class="list-group js-sortable js-connected js-selected-ingredients-list-container" data-sortable-group="editRecipe">
 						<?php /* current ingredients list */ ?>
 					</div>
 				</div>
@@ -51,6 +55,41 @@
 				<button type="button" class="btn btn-primary js-edit-it">Bestätigen</button>
 			</div>
 		</div>
+	</div>
+</div>
+
+<div class="modal fade js-modal" tabindex="-1" role="dialog" aria-labelledby="newModalLabel" data-name="new">
+	<div class="modal-dialog" role="document">
+		<form action="/project/ajax.php?api=createRecipe" class="modal-content js-form" method="POST">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="newModalLabel">Neues Rezept hinzufügen</h4>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="form-group col-xs-12">
+						<label for="name">Name</label>
+						<input class="form-control" type="text" name="name" required />
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="list-group js-sortable js-connected js-all-ingredients-list-container" data-sortable-group="newRecipe">
+							<?php /* all ingredients list */ ?>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="list-group js-sortable js-connected js-selected-ingredients-list-container" data-sortable-group="newRecipe">
+							<?php /* create empty list on showing modal */ ?>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Abbrechen</button>
+				<button type="submit" class="btn btn-success">Anlegen</button>
+			</div>
+		</form>
 	</div>
 </div>
 
@@ -89,6 +128,10 @@
 	</button>
 	{{ for(var i=0,ingredient;i<ingredients.length;i++) { }}
 		{{ ingredient = ingredients[i]; }}
-		<button type="button" class="list-group-item">{{= ingredient }}</button>
+		{{ if(typeof ingredient === "string") { }}
+			<button type="button" class="list-group-item">{{= ingredient }}</button>
+		{{ }else{ }}
+			<button type="button" class="list-group-item">{{= ingredient.name }}</button>
+		{{ } }}
 	{{ } }}
 </script>
