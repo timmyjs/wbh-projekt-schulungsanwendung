@@ -18,8 +18,10 @@
 				'onGetDataSuccess',
 				'onGetDataError',
 				'onSubmitForm',
+				'onSubmitFormSuccess',
+				'onSubmitFormError',
 				'registerClickListener',
-				'enableEditing'
+				'toggleEditing'
 			);
 			this.getData();
 			this.$('.js-form').on('submit', this.onSubmitForm);
@@ -49,12 +51,31 @@
 		},
 
 		registerClickListener: function() {
-			this.$('.js-enable-editing').on('click', this.enableEditing);
+			this.$('.js-toggle-editing').off().on('click', this.toggleEditing);
 		},
 
-		enableEditing: function(ev) {
-			$(ev.currentTarget).closest('tr').find('.js-toggle-editing').toggleClass('hidden');
-			this.$('.js-form-action').removeAttr('disabled').removeClass('disabled');
+		toggleEditing: function(ev) {
+			var $tr = $(ev.currentTarget).closest('tr')
+			if($tr.is('.editable')){
+				this.disableEditing();
+			}else{
+				this.enableEditing();
+			}
+			$tr.closest('tr').toggleClass('editable');
+		},
+
+		disableEditing: function() {
+			var $el;
+			this.$('.js-submit').prop('disabled', true).addClass('disabled');
+			this.$('.js-input').each(function(i, el) {
+				$el = $(el);
+				$el.val($el.data('origin-value'));
+			});
+		},
+
+		enableEditing: function() {
+			console.log('enableEditing');
+			this.$('.js-submit').prop('disabled', false).removeClass('disabled');
 		},
 
 		onSubmitForm: function(ev) {
@@ -70,7 +91,7 @@
 		},
 
 		onSubmitFormSuccess: function(data) {
-			console.log('success', data);
+			this.getData();
 		},
 
 		onSubmitFormError: function(err) {

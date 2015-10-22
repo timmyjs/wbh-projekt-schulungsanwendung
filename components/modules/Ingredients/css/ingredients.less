@@ -1,6 +1,24 @@
 .mod-ingredients {
-	.edit-icon {
+	.edit-icon,
+	.remove-icon {
 		cursor: pointer;
 	}
-
+	.ingredient-input,
+	.remove-icon {
+		display: none;
+	}
+	.ingredient-info,
+	.edit-icon {
+		display: block;
+	}
+	.editable {
+		.ingredient-input,
+		.remove-icon {
+			display: block;
+		}
+		.ingredient-info,
+		.edit-icon {
+			display: none;
+		}
+	}
 }
