@@ -2,7 +2,10 @@
 <?php partial('head', array('title' => 'Zutaten verwalten')); ?>
 <main class="container">
 	<?php partial('logout', array('headline' => 'Zutaten verwalten')); ?>
-	<p class="margin-bottom-large">Hier können alle Zutaten eingesehen und bearbeitet werden. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt deserunt, et atque. Dolore voluptatum quos molestiae ut perferendis est, nesciunt quis aperiam obcaecati. Tenetur accusantium consectetur, quod libero velit dicta.</p>
+	<p class="margin-bottom-large">Hier können alle Zutaten eingesehen und bearbeitet werden. 
+	Diese Zutaten können in den Rezepten verwendet werden. <br> 
+	Die Position der Zutaten wird in der Übungsanwendung abgefragt. <br><br>
+	Zum Bearbeiten einer bestimmten Zutat, einfach auf das Zahnrad klicken, Änderungen vornehmen, bestätigen und die Anpassungen durch den Klick auf den Butten "Abschicken" bestätigen.</p>
 	<?php component('ingredients', true, true, array(
 		'data-url'=>'/project/ajax.php?api=ingredients',
 	)); ?>

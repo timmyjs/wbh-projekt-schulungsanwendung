@@ -2,7 +2,10 @@
 <?php partial('head', array('title' => 'Rezepte verwalten')); ?>
 <main class="container">
 	<?php partial('logout', array('headline' => 'Rezepte verwalten')); ?>
-	<p class="margin-bottom-large">Hier können alle Rezepte eingesehen und bearbeitet werden. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt deserunt, et atque. Dolore voluptatum quos molestiae ut perferendis est, nesciunt quis aperiam obcaecati. Tenetur accusantium consectetur, quod libero velit dicta.</p>
+	<p class="margin-bottom-large">Hier können alle Rezepte eingesehen und bearbeitet werden. <br>
+	Um eine Auflistung der Zutaten zu erhalten einfach auf das jeweilige Rezept klicken.<br>
+	Die Rezepte können einzeln bearbeitet und gelöscht werden durch entsprechenden Symbole am Ende jeder Zeile.
+	</p>
 	<?php component('Recipes', 'admin', ['admin'], array(
 		'data-service-recipes'=>'/project/ajax.php?api=recipes',
 		'data-service-ingredients'=>'/project/ajax.php?api=ingredients'

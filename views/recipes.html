@@ -2,7 +2,8 @@
 <?php partial('head', array('title' => 'Rezepte')); ?>
 <main class="container">
 	<?php partial('logout', array('headline' => 'Rezepte')); ?>
-	<p class="margin-bottom-large">Hier kannst du alle verfügbaren Rezepte einsehen. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt deserunt, et atque. Dolore voluptatum quos molestiae ut perferendis est, nesciunt quis aperiam obcaecati. Tenetur accusantium consectetur, quod libero velit dicta.</p>
+	<p class="margin-bottom-large">Hier kannst du alle verfügbaren Rezepte einsehen. <br>
+	Um eine Auflistung der Zutaten zu erhalten einfach auf das jeweilige Rezept klicken.</p>
 	<?php component('Recipes', true, true, array('data-service-recipes'=>'/project/ajax.php?api=recipes')); ?>
 </main>
 <?php partial('foot'); ?>
