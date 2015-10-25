@@ -44,11 +44,14 @@
 
 		onGetStatsSuccess: function(data) {
 			this.$('.js-ajax-loader, .js-pie-chart').toggleClass('hidden');
-
-			if(!this.$chart){
-				this.createChart(data);
-			}else{
-				this.updateChart(data);
+			if(data.hasData){
+				if(!this.$chart){
+					this.createChart(data);
+				}else{
+					this.updateChart(data);
+				}
+			} else {
+				this.$('.js-no-results').removeClass('hidden');
 			}
 		},
 
@@ -76,10 +79,6 @@
 		},
 
 		updateChart: function(data) {
-			data = {
-				labels: ["Banana", "Apples", "Grapes"],
-				series: [33, 33, 33]
-			};
 			this.$chart.update(data);
 		},
 

@@ -3,7 +3,7 @@
 <div class="row">
 	<div class="col-sm-10">
 		 <!--Alter Tabellenkopf mit statischen Daten <form action="/project/ajax.php?api=getStats" class="form-horizontal js-form" method="GET">-->
-		<form action="/project/services/getStats.php" class="js-form" method="GET">
+		<form action="/project/services/getStats.php" class="margin-bottom-large js-form" method="GET">
 			<div class="form-group">
 				<label for="user" class="col-sm-2 control-label">Benutzer auswählen:</label>
 				<div class="col-sm-10">
@@ -37,7 +37,14 @@
 					<p><strong>Statistiken werden geladen, bitte einen Augenblick warten</strong></p>
 					<span class="ajax-loader active"></span>
 				</div>
-				<div class="ct-chart ct-golden-section js-pie-chart"></div>
+				<div class="js-no-results hidden">
+					<p>
+						<span class="glyphicon glyphicon-tag"></span>
+						Für diesen Benutzer liegen noch keine Statistiken vor. Schließen Sie eine Übung ab und versuchen es zu einem späteren Zeitpunkt noch mal.
+					</p>
+				</div>
+				<div class="ct-chart ct-golden-section hidden js-pie-chart">
+				</div>
 			</div>
 		</div>
 	</div>
