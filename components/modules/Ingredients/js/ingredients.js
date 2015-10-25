@@ -66,7 +66,7 @@
 
 		disableEditing: function() {
 			var $el;
-			this.$('.js-submit').prop('disabled', true).addClass('disabled');
+			this.$('.js-toggle-enabling').prop('disabled', true).addClass('disabled');
 			this.$('.js-input').each(function(i, el) {
 				$el = $(el);
 				$el.val($el.data('origin-value'));
@@ -74,8 +74,7 @@
 		},
 
 		enableEditing: function() {
-			console.log('enableEditing');
-			this.$('.js-submit').prop('disabled', false).removeClass('disabled');
+			this.$('.js-toggle-enabling').prop('disabled', false).removeClass('disabled');
 		},
 
 		onSubmitForm: function(ev) {

@@ -1,0 +1,10 @@
+<?php partial('session'); ?>
+<?php partial('head', array('title' => 'Benutzer verwalten')); ?>
+<main class="container">
+	<?php partial('logout', array('headline' => 'Benutzer verwalten')); ?>
+	<p class="margin-bottom-large">Hier können die Benutzerdaten eingesehen und verwaltet werden. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt deserunt, et atque. Dolore voluptatum quos molestiae ut perferendis est, nesciunt quis aperiam obcaecati. Tenetur accusantium consectetur, quod libero velit dicta.</p>
+	<?php component('ingredients', 'user', ['user'], array(
+		'data-url'=>'/project/ajax.php?api=user',
+	)); ?>
+</main>
+<?php partial('foot'); ?>
