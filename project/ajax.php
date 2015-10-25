@@ -109,5 +109,37 @@
 					.'"series": [20, 20, 60]'
 				.'}';
 		break;
+		case 'user':
+			header('Content-Type: application/json; charset=utf-8');
+			echo '{'
+				.'"users": ['
+					.'{'
+						.'"id": "tmay",'
+						.'"forename": "Thomas",'
+						.'"surename": "May",'
+						.'"email": "thomas.may@namics.com",'
+						.'"isAdmin": true'
+					.'}, {'
+						.'"id": "tmay",'
+						.'"forename": "Thomas",'
+						.'"surename": "May",'
+						.'"email": "thomas.may@namics.com",'
+						.'"isAdmin": false'
+					.'}, {'
+						.'"id": "tmay",'
+						.'"forename": "Thomas",'
+						.'"surename": "May",'
+						.'"email": "thomas.may@namics.com",'
+						.'"isAdmin": false'
+					.'}, {'
+						.'"id": "tmay",'
+						.'"forename": "Thomas",'
+						.'"surename": "May",'
+						.'"email": "thomas.may@namics.com",'
+						.'"isAdmin": false'
+					.'}'
+				.']'
+			.'}';
+		break;
 	}
 ?>

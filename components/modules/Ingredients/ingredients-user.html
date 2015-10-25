@@ -1,0 +1,57 @@
+<form action="/project/ajax.php?api=sendingredients" class="js-form" method="POST">
+	<table class="table table-responsive margin-bottom-large">
+		<thead>
+			<tr>
+				<th class="col-xs-3">Vorname</th>
+				<th class="col-xs-3">Name</th>
+				<th class="col-xs-2">Email</th>
+				<th class="col-xs-2">Administrator</th>
+				<th class="col-xs-2"><?php /* do not remove, required for edit icon */ ?></th>
+			</tr>
+		</thead>
+		<tbody class="js-ingredients-table">
+			<tr>
+				<td class="text-center" colspan="5">
+					<p><strong>Benutzerdaten werden geladen, bitte einen Augenblick warten</strong></p>
+					<span class="ajax-loader active"></span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="form-group text-right">
+		<button class="btn btn-primary disabled js-toggle-enabling" type="submit" disabled>
+			Abschicken
+		</button>
+	</div>
+</form>
+
+<script type="text/template" id="ingredients-table-template">
+	{{ for(var i=0,user;i<users.length;i++) { }}
+		{{ user = users[i]; }}
+		<tr>
+			<td>
+				<span class="ingredient-info">{{= user.forename }}</span>
+				<input class="form-control ingredient-input js-input" type="text" name="{{= user.id }}_forename" placeholder="{{= user.forename }}" value="{{= user.forename }}" data-origin-value="{{= user.forename }}" />
+			</td>
+
+			<td>
+				<span class="ingredient-info">{{= user.surename }}</span>
+				<input class="form-control ingredient-input js-input" type="text" name="{{= user.id }}_surename" placeholder="{{= user.surename }}" value="{{= user.surename }}" data-origin-value="{{= user.surename }}" />
+			</td>
+
+			<td>
+				<span class="ingredient-info">{{= user.email }}</span>
+				<input class="form-control ingredient-input js-input" type="text" name="{{= user.id }}_yPos" placeholder="{{= user.email }}" value="{{= user.email }}" data-origin-value="{{= user.email }}" />
+			</td>
+
+			<td class="text-center v-align-middle">
+				<input class="disabled js-toggle-enabling" type="checkbox" name="{{= user.id}}_isAdmin" {{ if(user.isAdmin){ }}checked {{ } }} disabled />
+			</td>
+
+			<td class="text-center v-align-middle">
+				<span class="edit-icon glyphicon glyphicon-cog js-toggle-editing" aria-hidden="true"></span>
+				<span class="remove-icon glyphicon glyphicon-remove js-toggle-editing" aria-hidden="true"></span>
+			</td>
+		</tr>
+	{{ } }}
+</script>
