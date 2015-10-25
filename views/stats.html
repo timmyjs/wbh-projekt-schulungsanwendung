@@ -16,7 +16,6 @@
 	<?php partial('logout', array('headline' => 'Statistiken')); ?>
 	<p class="margin-bottom-large">Hier können die Statistiken eingesehen werden.<br>
 	Die Darstellung zeigt ein Tortendiagramm für einen Benutzer, welches die richtigen und falschen Antworten im Verhältnis darstellt.</p>
-	<?php //component('Stats', true, true, array('data-url'=>'/project/ajax.php?api=stats')); ?>
-        <?php component('Stats', true, true, array('data-url'=>'/project/services/getStats.php')); ?>
+	<?php component('Stats', true, true, array('data-url'=>'/project/services/getStats.php')); ?>
 </main>
 <?php partial('foot'); ?>
