@@ -6,8 +6,6 @@
 	Zum Bearbeiten und Löschen auf die entsprechenden Symbole am Ende der Zeile klicken.<br><br>
 	Administrator Rechte können durch die Auswahl der Checkbox in der Zeile eines jeden Benutzers vergeben werden.
 	</p>
-	<?php component('ingredients', 'user', ['user'], array(
-		'data-url'=>'/project/ajax.php?api=user',
-	)); ?>
+	<?php component('ingredients', 'user', ['user'], array('data-url'=>'/project/services/getUser.php',)); ?>
 </main>
 <?php partial('foot'); ?>
