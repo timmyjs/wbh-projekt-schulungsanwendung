@@ -12,7 +12,7 @@
 		"app.js": [
 			"!components/modules/Test*/*",
 			"assets/js/jquery-2.1.4.min.js",
-			"assets/js/terrific-2.1.0.js",
+			"assets/js/terrific-2.1.0.min.js",
 			"assets/js/terrific-extensions.js",
 			"assets/js/*.js",
 			"components/modules/*/js/*.js",
