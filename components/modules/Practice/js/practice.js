@@ -48,11 +48,22 @@
 		},
 
 		onGetIngredientsSuccess: function(data) {
-			var $container = this.$('.js-ingredients-container');
+			var group,
+				that = this,
+				$container = this.$('.js-ingredients-container'),
+				markup = this.$('#ingredients-template').html();
 
-			$container
-				.html(this.template(this.$('#ingredients-template').html(), data))
-				.find('.js-add-ingredient').on('click', this.onAddIngredient);
+			data.ingredients.forEach(function(el, i, arr) {
+				group = arr.filter(function(item) {
+					return parseInt(item.xPos) === parseInt(i);
+				});
+				group = group.sort(function(a, b) {
+					return ((a.yPos < b.yPos) ? -1 : ((a.yPos > b.yPos) ? 1 : 0));
+				});
+				if(group.length) $container.append(that.template(markup, { group: group }));
+			});
+
+			$container.find('.js-add-ingredient').on('click', this.onAddIngredient);
 		},
 
 		onGetIngredientsError: function(err) {

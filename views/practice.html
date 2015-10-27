@@ -5,7 +5,7 @@
 	<p>Hier kannst du Cocktails mixen. Wähle die richtigen Zutaten für das genannte Rezept aus und bestätige deine Eingabe mit "Mischen!".</p>
 	<?php component('Practice', true, true, array(
 		'data-service-new-recipe'=>'/project/ajax.php?api=practice-new-recipe',
-		'data-service-ingredients'=>'/project/ajax.php?api=ingredients'
+		'data-service-ingredients'=>'/project/services/getIngredients.php'
 	)); ?>
 </main>
 <?php partial('foot'); ?>

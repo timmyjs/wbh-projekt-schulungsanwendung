@@ -1,7 +1,6 @@
 <form action="/project/ajax.php?api=submit-practice" class="js-practice-form" method="POST">
 
-	<section class="ingredients">
-		<ul class="js-ingredients-container"></ul>
+	<section class="ingredients text-center js-ingredients-container">
 	</section>
 
 	<section class="pad">
@@ -20,14 +19,17 @@
 </form>
 
 <script type="text/template" id="ingredients-template">
-	{{ for(var i=0, ingredient; i<ingredients.length; i++){
-		ingredient = ingredients[i];
+	<ul>
+	{{
+		for(var i=0, item; i<group.length; i++){
+		item = group[i];
 	}}
 		<li class="js-add-ingredient">
-			{{= ingredient.name }}
-			<input type="hidden" name="tbd" value="{{= ingredient.id}}" />
+			{{= item.name }}
+			<input type="hidden" name="tbd" value="{{= item.id }}" />
 		</li>
 	{{ } }}
+	</ul>
 </script>
 
 <script type="text/template" id="ingredient-list-template">
