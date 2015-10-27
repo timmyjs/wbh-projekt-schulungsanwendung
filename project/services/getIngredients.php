@@ -1,46 +1,27 @@
 <?php
+	require_once 'DBConnector.php';
+	require_once 'DBFunctions.inc';
+	//Verbindung mit der Datenbank
+	$connector = new DBConnector;
+	$db = $connector->connect();
 
-require_once './project/services/DBConnector.php';
-require_once './project/services/DBFunctions.inc';
+	$sql = "SELECT * FROM TREPPE";
+	$res = mysqli_query($db, $sql);
 
-$connector = new DBConnector;
-$db = $connector->connect();
+	$i = 1;
+	$count = mysqli_num_rows($res);
 
-         	
-$sql_get_ingredient = "SELECT Z_ID, NAME, XPOS, YPOS FROM TREPPE";
-
-$res = db_query($db, $sql_get_ingredient, $args);
-
-echo $res; 
-
-
-
-
-/*
-
-case 'ingredients':
-			header('Content-Type: application/json; charset=utf-8');
-			echo '{'
-				.'"ingredients": ['
-					.'{'
-						.'"id": 1,'
-						.'"name": "Sahne",'
-						.'"xPos": 1,'
-						.'"yPos": 1'
-					.'}, {'
-						.'"id": 2,'
-						.'"name": "Rum",'
-						.'"xPos": 2,'
-						.'"yPos": 1'
-					.'}, {'
-						.'"id": 3,'
-						.'"name": "Cream of Coconut",'
-						.'"xPos": 3,'
-						.'"yPos": 1'
-					.'}, 
-				.']'
-			.'}';
-		break;
-                
-                */
-                ?>
+	header('Content-Type: application/json; charset=utf-8');
+	echo '{ "ingredients": [';
+	while ($key = mysqli_fetch_array($res)) {
+		$lastRow = ($i < $count) ? '},' : '}';
+		echo '{'
+			.'"id": "' .$key['Z_ID'] .'",'
+			.'"name": "' .$key['NAME'] .'",'
+			.'"xPos": "' .$key['XPOS'] .'",'
+			.'"yPos": "' .$key['YPOS'] .'"';
+		echo $lastRow;
+		$i++;
+	}
+	echo ']}';
+?>
