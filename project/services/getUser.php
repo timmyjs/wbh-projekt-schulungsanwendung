@@ -4,7 +4,7 @@
 	//Verbindung mit der Datenbank
 	$connector = new DBConnector;
 	$db = $connector->connect();
-	#
+
 	$sql = "SELECT * FROM USER";
 	$res = mysqli_query($db, $sql);
 
@@ -15,13 +15,14 @@
 	echo '{ "users": [';
 	while ($key = mysqli_fetch_array($res)) {
 		$admin = empty($key['ADMIN']) ? 'true' : 'false';
+		$lastRow = ($i < $count) ? '},' : '}';
 		echo '{'
 			.'"id": "' .$key['U_ID'] .'",'
 			.'"forename": "' .$key['VORNAME'] .'",'
 			.'"surename": "' .$key['NAME'] .'",'
 			.'"email": "' .$key['EMAIL'] .'",';
 		echo '"isAdmin": ' .$admin .'';
-		echo ($i < $count) ? '},' : '}';
+		echo $lastRow;
 		$i++;
 	}
 	echo ']}';
