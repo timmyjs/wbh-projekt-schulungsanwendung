@@ -14,20 +14,17 @@
 
 	$sql_wrong = "SELECT FALSCH FROM STATISTIKEN WHERE U_ID = '$user_stat'";       //SQL Query der FALSCH-Einträge
 	$res_wrong = mysqli_query($db,$sql_wrong);                             //SQL Ausführen und Ergebnis in $res_wrong speichern
-        
-    
+
+
 	$sum_right=0;
 	$sum_wrong=0;
 
 	while($right = mysqli_fetch_array($res_right)) {                         //Addieren aller RICHTIG Einträge
-		$right['RICHTIG'] ;
-               
-                $sum_right += $right; //FUNKTIONIERT noch NICHT! String verwendet!
-                }
-        
+		$sum_right += $right['RICHTIG'];
+	}
+
 	while($wrong = mysqli_fetch_array($res_wrong)) {                          //Addieren aller FALSCH Einträge
-		$wrong['FALSCH'];
-		$sum_wrong += $wrong; //FUNKTIONIERT noch NICHT! String verwendet!
+		$sum_wrong += $wrong['FALSCH'];
 	}
 
 	if (($sum_right == 0) && ($sum_wrong == 0)) {
@@ -35,7 +32,7 @@
 	} else {
 		$hasData = 'true';
 	}
-               
+
 	header('Content-Type: application/json; charset=utf-8');                    //Übergabe der Addierten Einträge an das Frontend
 	echo '{'
 			.'"hasData": '.$hasData.','
@@ -44,5 +41,5 @@
 				.$sum_right.','
 				.$sum_wrong
 			.']'
-		.'}';       
-         ?>
+		.'}';
+		 ?>
