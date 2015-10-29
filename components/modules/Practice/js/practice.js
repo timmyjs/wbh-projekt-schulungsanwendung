@@ -58,10 +58,13 @@
 
 			data.ingredients.forEach(function(el, i, arr) {
 				group = arr.filter(function(item) {
-					return parseInt(item.xPos) === parseInt(i);
+					return parseInt(item.yPos) === parseInt(i);
+				});
+				group.forEach(function(item){
+					item.xPos = (item.xPos < 10) ? ('0' + item.xPos) : item.xPos;
 				});
 				group = group.sort(function(a, b) {
-					return ((a.yPos < b.yPos) ? -1 : ((a.yPos > b.yPos) ? 1 : 0));
+					return ((a.xPos < b.xPos) ? -1 : ((a.xPos > b.xPos) ? 1 : 0));
 				});
 				if(group.length) $container.append(that.template(markup, { group: group }));
 			});
