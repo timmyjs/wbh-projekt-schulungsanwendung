@@ -28,11 +28,13 @@
 				'onSubmitPracticeFormSuccess',
 				'onSubmitPracticeFormError',
 				'updateIngredientList',
-				'cancelPractice'
+				'resolveRecipe',
+				'finishPractice'
 			);
 			this.$ctx.on('updateIngredients', this.updateIngredientList);
+			this.$ctx.on('resolved', this.resolveRecipe);
 			this.$('.js-practice-form').on('submit', this.onSubmitPracticeForm);
-			this.$('.js-cancel').on('click', this.cancelPractice);
+			this.$('.js-cancel').on('click', this.finishPractice);
 			this.getIngredients();
 			this.getNewRecipe();
 			// do not remove
@@ -135,12 +137,16 @@
 			else if(data.result === 'wrong'){
 				this.wrongAnswers += 1;
 			}
-			this.getNewRecipe();
-			this.resetSelection();
+			this.$ctx.trigger('resolved');
 		},
 
 		onSubmitPracticeFormError: function(err) {
 			console.log('error', err);
+		},
+
+		resolveRecipe: function() {
+			this.getNewRecipe();
+			this.resetSelection();
 		},
 
 		updateIngredientList: function() {
@@ -148,7 +154,7 @@
 			this.$('.js-ingredient-list-container').html(this.template(this.$('#ingredient-list-template').html(), data));
 		},
 
-		cancelPractice: function() {
+		finishPractice: function() {
 			this.$ctx.addClass('hidden');
 			this.fire('showStats', {
 				right: this.rightAnswers,

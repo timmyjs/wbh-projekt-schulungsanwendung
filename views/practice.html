@@ -2,7 +2,7 @@
 <?php partial('head', array('title' => 'Cocktails mixen')); ?>
 <main class="container">
 	<?php partial('logout', array('headline' => 'Cocktails mixen')); ?>
-	<p>Hier kannst du Cocktails mixen. Wähle die richtigen Zutaten für das genannte Rezept aus und bestätige deine Eingabe mit "Mischen!".</p>
+	<p class="margin-bottom">Hier kannst du Cocktails mixen. Wähle die richtigen Zutaten für das genannte Rezept aus und bestätige deine Eingabe mit "Mischen!".</p>
 	<?php
 		if($_GET['mode'] == 'learn'){
 			component('Practice', true, true, array(

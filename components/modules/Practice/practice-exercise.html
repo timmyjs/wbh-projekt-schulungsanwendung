@@ -1,30 +1,24 @@
+<div class="clearfix margin-bottom">
+	<p>Gemixte Cocktails: <strong><span class="js-resolved">0</span> / 10</strong></p>
+</div>
+
 <form action="/project/ajax.php?api=submit-practice" class="js-practice-form" method="POST">
 
 	<input class="js-recipe-input" type="hidden" name="recipe" value="" />
 
-	<section class="ingredients text-center js-ingredients-container">
+	<section class="ingredients margin-bottom-large text-center js-ingredients-container">
 	</section>
 
-	<section class="pad">
+	<section class="pad margin-bottom">
 		<h3>Zutaten für: <span class="js-insert-recipe"></span></h3>
 		<ul class="js-ingredient-list-container">
 			<li>Noch keine Zutaten ausgewählt</li>
 		</ul>
 	</section>
 
-	<div class="row">
-		<div class="col-sm-6">
-			<a href="#" class="btn btn-warning btn-block js-cancel">
-				Beenden
-			</a>
-		</div>
-		<div class="col-sm-6">
-			<button class="btn btn-primary btn-block" type="submit">
-				Mischen!
-			</button>
-		</div>
-	</div>
-
+	<button class="btn btn-primary btn-block margin-bottom-large" type="submit">
+		Mischen!
+	</button>
 
 </form>
 
