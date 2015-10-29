@@ -4,11 +4,17 @@
 	switch ($_REQUEST['api']) {
 		case 'example':
 		case 'forgot-password':
-		case 'submit-practice':
 		case 'deleteRecipe':
 			header('Content-Type: application/json; charset=utf-8');
 			echo '{'
 					.'"success": true'
+				.'}';
+		break;
+		case 'submit-practice':
+			header('Content-Type: application/json; charset=utf-8');
+			echo '{'
+					.'"success": true,'
+					.'"result": "right"'
 				.'}';
 		break;
 		case 'registration':
@@ -99,7 +105,8 @@
 		case 'practice-new-recipe':
 			header('Content-Type: application/json; charset=utf-8');
 			echo '{'
-					.'"name": "Pina Colada"'
+					.'"name": "Pina Colada",'
+					.'"id": 1'
 				.'}';
 		break;
 		case 'getStats':

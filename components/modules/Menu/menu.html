@@ -1,29 +1,31 @@
 <div class="row margin-bottom">
-	<div class="col-sm-6 col-md-4">
+	<div class="col-sm-6 col-md-4 js-practice-col">
 		<?php partial('teaser', array(
 			'heading'	=> 'Cocktails mixen',
-			'content'	=> '',					//Kann ggf. mit Text ergänzt werden.
 			'linkurl'	=> '/practice',
 			'linktext'	=> 'Zur Übung',
-			'img'		=> 'http://qualitygreens.com/wp-content/themes/child_theme/timthumb.php?src=/wp-content/uploads/pina-colada-image.png&h=150&w=300&q=100'
+			'img'		=> '/assets/img/dummy.jpg',
+			'class'		=> 'js-start-practice'
 		)); ?>
+		<article class="teaser hidden">
+			<a href="/practice?mode=learn" class="btn btn-primary btn-block margin-bottom">Lernmodus</a>
+			<a href="/practice?mode=exercise" class="btn btn-primary btn-block">Übungsmodus</a>
+		</article>
 	</div>
 	<div class="col-sm-6 col-md-4">
 		<?php partial('teaser', array(
 			'heading'	=> 'Rezepte anzeigen',
-			'content'	=> '',					//Kann ggf. mit Text ergänzt werden.
 			'linkurl'	=> '/recipes',
 			'linktext'	=> 'Zu den Rezepten',
-			'img'		=> 'http://qualitygreens.com/wp-content/themes/child_theme/timthumb.php?src=/wp-content/uploads/pina-colada-image.png&h=150&w=300&q=100'
+			'img'		=> '/assets/img/dummy.jpg'
 		)); ?>
 	</div>
 	<div class="col-sm-6 col-md-4">
 		<?php partial('teaser', array(
 			'heading'	=> 'Statistiken',
-			'content'	=> '',					//Kann ggf. mit Text ergänzt werden.
 			'linkurl'	=> '/stats',
 			'linktext'	=> 'Zu meinen Statistiken',
-			'img'		=> 'http://qualitygreens.com/wp-content/themes/child_theme/timthumb.php?src=/wp-content/uploads/pina-colada-image.png&h=150&w=300&q=100'
+			'img'		=> '/assets/img/dummy.jpg'
 		)); ?>
 	</div>
 </div>
@@ -36,28 +38,25 @@
 	<div class="col-sm-6 col-md-4">
 		<?php partial('teaser', array(
 			'heading'	=> 'Benutzerverwaltung',
-			'content'	=> '',					//Kann ggf. mit Text ergänzt werden.
 			'linkurl'	=> '/user-admin',
 			'linktext'	=> 'Zur Benutzerverwaltung',
-			'img'		=> 'http://qualitygreens.com/wp-content/themes/child_theme/timthumb.php?src=/wp-content/uploads/pina-colada-image.png&h=150&w=300&q=100'
+			'img'		=> '/assets/img/dummy.jpg'
 		)); ?>
 	</div>
 	<div class="col-sm-6 col-md-4">
 		<?php partial('teaser', array(
 			'heading'	=> 'Treppenverwaltung',
-			'content'	=> '',					//Kann ggf. mit Text ergänzt werden.
 			'linkurl'	=> '/ingredients-admin',
 			'linktext'	=> 'Zur Treppenverwaltung',
-			'img'		=> 'http://qualitygreens.com/wp-content/themes/child_theme/timthumb.php?src=/wp-content/uploads/pina-colada-image.png&h=150&w=300&q=100'
+			'img'		=> '/assets/img/dummy.jpg'
 		)); ?>
 	</div>
 	<div class="col-sm-6 col-md-4">
 		<?php partial('teaser', array(
 			'heading'	=> 'Rezeptverwaltung',
-			'content'	=> '',					//Kann ggf. mit Text ergänzt werden.
 			'linkurl'	=> '/recipes-admin',
 			'linktext'	=> 'Zur Rezeptverwaltung',
-			'img'		=> 'http://qualitygreens.com/wp-content/themes/child_theme/timthumb.php?src=/wp-content/uploads/pina-colada-image.png&h=150&w=300&q=100'
+			'img'		=> '/assets/img/dummy.jpg'
 		)); ?>
 	</div>
 </script>

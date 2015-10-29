@@ -10,6 +10,8 @@
 	 */
 	Tc.Module.Practice = Tc.Module.extend({
 		ingredients: [],
+		rightAnswers: 0,
+		wrongAnswers: 0,
 
 		init: function($ctx, sandbox, modId) {
 			this._super($ctx, sandbox, modId);
@@ -21,15 +23,16 @@
 				'onGetNewRecipeError',
 				'onGetIngredientsSuccess',
 				'onGetIngredientsError',
-				'onAddIngredient',
-				'onRemoveIngredient',
+				'onPickIngredient',
 				'onSubmitPracticeForm',
 				'onSubmitPracticeFormSuccess',
 				'onSubmitPracticeFormError',
-				'updateIngredientList'
+				'updateIngredientList',
+				'cancelPractice'
 			);
 			this.$ctx.on('updateIngredients', this.updateIngredientList);
 			this.$('.js-practice-form').on('submit', this.onSubmitPracticeForm);
+			this.$('.js-cancel').on('click', this.cancelPractice);
 			this.getIngredients();
 			this.getNewRecipe();
 			// do not remove
@@ -63,7 +66,7 @@
 				if(group.length) $container.append(that.template(markup, { group: group }));
 			});
 
-			$container.find('.js-add-ingredient').on('click', this.onAddIngredient);
+			$container.find('.js-pick-ingredient').on('click', this.onPickIngredient);
 		},
 
 		onGetIngredientsError: function(err) {
@@ -80,25 +83,32 @@
 
 		onGetNewRecipeSuccess: function(data) {
 			this.$('.js-insert-recipe').text(data.name);
+			this.$('.js-recipe-input').val(data.id);
 		},
 
 		onGetNewRecipeError: function(err) {
 			console.log('error', err);
 		},
 
-		onAddIngredient: function(ev) {
-			var ingredient = $(ev.currentTarget).text();
+		onPickIngredient: function(ev) {
+			var $el = $(ev.currentTarget),
+				id = $el.data('id'),
+				name = $el.data('name');
 
-			if(this.ingredients.indexOf(ingredient) === -1){
-				this.ingredients.push(ingredient);
-				this.$ctx.trigger('updateIngredients');
-			}
+			$el.is('.selected') ? this.removeIngredient({ id: id, name: name }) : this.addIngredient({ id: id, name: name });
+			$el.toggleClass('selected');
 		},
 
-		onRemoveIngredient: function(ev) {
-			var ingredient = $(ev.currentTarget).text(),
-				index = this.ingredients.indexOf(ingredient);
+		addIngredient: function(data) {
+			this.ingredients.push({ name: data.name, id: data.id });
+			this.$ctx.trigger('updateIngredients');
+		},
 
+		removeIngredient: function(data) {
+			var index;
+			$.each(this.ingredients, function(i, el) {
+				if(el.id === data.id) return index = i;
+			});
 			this.ingredients.splice(index, 1);
 			this.$ctx.trigger('updateIngredients');
 		},
@@ -109,18 +119,21 @@
 			$.ajax({
 				url: $form.attr('action'),
 				method: $form.attr('method'),
-				// data: { "item": "test" },
+				data: $form.serialize(),
 				success: this.onSubmitPracticeFormSuccess,
 				error: this.onSubmitPracticeFormError
 			});
 		},
 
 		onSubmitPracticeFormSuccess: function(data) {
-			console.log('onSubmitPracticeFormSuccess');
-			if(data.success){
-				console.log('success');
-				this.getNewRecipe();
+			if(data.result === 'right'){
+				this.rightAnswers += 1;
 			}
+			else if(data.result === 'wrong'){
+				this.wrongAnswers += 1;
+			}
+			this.getNewRecipe();
+			this.resetSelection();
 		},
 
 		onSubmitPracticeFormError: function(err) {
@@ -128,13 +141,22 @@
 		},
 
 		updateIngredientList: function() {
-			var data = { ingredients: this.ingredients },
-				$container = this.$('.js-ingredient-list-container');
+			var data = { ingredients: this.ingredients };
+			this.$('.js-ingredient-list-container').html(this.template(this.$('#ingredient-list-template').html(), data));
+		},
 
-			$container
-				.html(this.template(this.$('#ingredient-list-template').html(), data))
-				.find('.js-remove-ingredient').off().on('click', this.onRemoveIngredient);
+		cancelPractice: function() {
+			this.$ctx.addClass('hidden');
+			this.fire('showStats', {
+				right: this.rightAnswers,
+				wrong: this.wrongAnswers
+			}, ['practice']);
+		},
+
+		resetSelection: function() {
+			this.$('.js-pick-ingredient').removeClass('selected');
+			this.ingredients = [];
+			this.$ctx.trigger('updateIngredients');
 		}
-
 	});
 }(Tc.$));

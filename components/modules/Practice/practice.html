@@ -1,5 +1,7 @@
 <form action="/project/ajax.php?api=submit-practice" class="js-practice-form" method="POST">
 
+	<input class="js-recipe-input" type="hidden" name="recipe" value="" />
+
 	<section class="ingredients text-center js-ingredients-container">
 	</section>
 
@@ -8,8 +10,8 @@
 		<ul class="js-ingredient-list-container"></ul>
 	</section>
 
-	<a href="/mainmenu" class="btn btn-warning">
-		Abbrechen
+	<a href="#" class="btn btn-warning js-cancel">
+		Beenden
 	</a>
 
 	<button class="btn btn-primary" type="submit">
@@ -24,16 +26,19 @@
 		for(var i=0, item; i<group.length; i++){
 		item = group[i];
 	}}
-		<li class="js-add-ingredient">
+		<li class="js-pick-ingredient" data-id="{{= item.id }}" data-name="{{= item.name }}">
 			{{= item.name }}
-			<input type="hidden" name="tbd" value="{{= item.id }}" />
 		</li>
 	{{ } }}
 	</ul>
 </script>
 
 <script type="text/template" id="ingredient-list-template">
-	{{ for(var i=0; i<ingredients.length; i++){ }}
-		<li class="js-remove-ingredient">{{= ingredients[i] }}</li>
+	{{ for(var i=0, item; i<ingredients.length; i++){ }}
+		{{ item = ingredients[i]; }}
+		<li>
+			{{= item.name }}
+			<input type="hidden" name="ingredient_{{= i }}" value="{{= item.id }}" />
+		</li>
 	{{ } }}
 </script>

@@ -15,7 +15,11 @@
 		},
 
 		on: function(callback) {
+			this.bindAll(
+				'onClickPractice'
+			);
 			this.renderMenu();
+			this.$('.js-start-practice').on('click', this.onClickPractice);
 			// do not remove
 			callback();
 		},
@@ -27,6 +31,11 @@
 			if(this.$ctx.data('is-admin')){
 				this.$('.js-admin-menu-container').html(this.template(this.$('#admin-menu-template').html()));
 			}
+		},
+
+		onClickPractice: function(ev) {
+			ev.preventDefault();
+			$(ev.currentTarget).closest('.js-practice-col').find('.teaser').toggleClass('hidden');
 		}
 
 	});

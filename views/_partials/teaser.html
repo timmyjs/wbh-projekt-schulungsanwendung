@@ -6,10 +6,7 @@
 		<h4>
 			<?= $data['heading']; ?>
 		</h4>
-		<p>
-			<?= $data['content']; ?>
-		</p>
-		<a href="<?= $data['linkurl']; ?>">
+		<a <? if(isset($data['class'])){ ?>class="<?= $data['class']; ?>"<?php } ?> href="<?= $data['linkurl']; ?>">
 			<?= $data['linktext']; ?>
 		</a>
 	</div>

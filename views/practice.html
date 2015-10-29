@@ -3,9 +3,24 @@
 <main class="container">
 	<?php partial('logout', array('headline' => 'Cocktails mixen')); ?>
 	<p>Hier kannst du Cocktails mixen. Wähle die richtigen Zutaten für das genannte Rezept aus und bestätige deine Eingabe mit "Mischen!".</p>
-	<?php component('Practice', true, true, array(
-		'data-service-new-recipe'=>'/project/ajax.php?api=practice-new-recipe',
-		'data-service-ingredients'=>'/project/services/getIngredients.php'
-	)); ?>
+	<?php
+		if($_GET['mode'] == 'learn'){
+			component('Practice', true, true, array(
+				'data-service-new-recipe'=>'/project/ajax.php?api=practice-new-recipe',
+				'data-service-ingredients'=>'/project/services/getIngredients.php',
+				'data-connectors'=>'practice'
+			));
+		} else {
+			component('Practice', 'exercise', ['exercise'], array(
+				'data-service-new-recipe'=>'/project/ajax.php?api=practice-new-recipe',
+				'data-service-ingredients'=>'/project/services/getIngredients.php',
+				'data-connectors'=>'practice'
+			));
+		}
+		component('Stats', 'practice', 'practice', array(
+			'data-url'=>'/project/services/getStats.php',
+			'data-connectors'=>'practice'
+		));
+	?>
 </main>
 <?php partial('foot'); ?>
