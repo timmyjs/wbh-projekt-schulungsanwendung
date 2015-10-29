@@ -151,6 +151,7 @@
 
 		updateIngredientList: function() {
 			var data = { ingredients: this.ingredients };
+			this.toggleMixBtn();
 			this.$('.js-ingredient-list-container').html(this.template(this.$('#ingredient-list-template').html(), data));
 		},
 
@@ -166,6 +167,14 @@
 			this.$('.js-pick-ingredient').removeClass('selected');
 			this.ingredients = [];
 			this.$ctx.trigger('updateIngredients');
+		},
+
+		toggleMixBtn: function() {
+			if(this.ingredients.length){
+				this.$('.js-submit').removeClass('disabled').attr('disabled', false);
+			}else{
+				this.$('.js-submit').addClass('disabled').attr('disabled', true);
+			}
 		}
 	});
 }(Tc.$));
