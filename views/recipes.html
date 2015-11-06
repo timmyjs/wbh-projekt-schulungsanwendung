@@ -4,6 +4,6 @@
 	<?php partial('logout', array('headline' => 'Rezepte')); ?>
 	<p class="margin-bottom-large">Hier kannst du alle verfügbaren Rezepte einsehen. <br>
 	Um eine Auflistung der Zutaten zu erhalten einfach auf das jeweilige Rezept klicken.</p>
-	<?php component('Recipes', true, true, array('data-service-recipes'=>'/project/ajax.php?api=recipes')); ?>
+	<?php component('Recipes', true, true, array('data-service-recipes'=>'/project/services/getRecipeList.php')); ?>
 </main>
 <?php partial('foot'); ?>
