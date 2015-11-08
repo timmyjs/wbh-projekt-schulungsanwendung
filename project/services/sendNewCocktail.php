@@ -27,7 +27,7 @@
             while($insert_ingredient = mysqli_fetch_array($ingredient_frontend))            //Zuweisen aller Zutaten zu ausgewähltem Rezept   
                     {   
                         $sql_insert_ingr = "INSERT INTO ZUORDNUNG (R_ID, Z_ID)"
-                        . "VALUES ((LAST_INSERT_ID(), $insert_ingredient[Z_ID])";
+                        . "VALUES ((LAST_INSERT_ID(), $insert_ingredient['Z_ID'])";
                         
                         if(mysqli_query($db, $sql_insert_ingr))                         //Erfolgreiche Rückmeldung, wenn die Werte eingefügt wurden
                                 
