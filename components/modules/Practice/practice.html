@@ -1,5 +1,6 @@
-<form action="/project/ajax.php?api=submit-practice" class="js-practice-form" method="POST">
+<form action="/project/services/sendCocktail.php" class="js-practice-form" method="POST">
 
+	<input type="hidden" name="user" value="<?= $_SESSION['U_ID']; ?>">
 	<input class="js-recipe-input" type="hidden" name="recipe" value="" />
 
 	<section class="ingredients text-center js-ingredients-container">
@@ -46,7 +47,7 @@
 		{{ item = ingredients[i]; }}
 		<li>
 			{{= item.name }}
-			<input type="hidden" name="ingredient_{{= i }}" value="{{= item.id }}" />
+			<input type="hidden" name="ingredient[]" value="{{= item.id }}" />
 		</li>
 	{{ } }}
 </script>
