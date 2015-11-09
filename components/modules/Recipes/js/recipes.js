@@ -36,7 +36,7 @@
 		},
 
 		onGetRecipesSuccess: function(data) {
-			this.recipes = data;
+			this.recipes = JSON.parse(data);
 			this.renderRecipeList();
 		},
 
