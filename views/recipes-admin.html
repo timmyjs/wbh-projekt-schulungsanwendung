@@ -7,8 +7,8 @@
 	Die Rezepte können einzeln bearbeitet und gelöscht werden durch entsprechenden Symbole am Ende jeder Zeile.
 	</p>
 	<?php component('Recipes', 'admin', ['admin'], array(
-		'data-service-recipes'=>'/project/ajax.php?api=recipes',
-		'data-service-ingredients'=>'/project/ajax.php?api=ingredients'
+		'data-service-recipes'=>'/project/services/getRecipeList.php',
+		'data-service-ingredients'=>'/project/services/getIngredients.php'
 	)); ?>
 </main>
 <?php partial('foot'); ?>
