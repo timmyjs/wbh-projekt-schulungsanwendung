@@ -93,17 +93,19 @@
 		};
 
 		this.onDeleteRecipe = function(ev) {
-			var $modal = this.$modal.delete;
-			$modal.find('.js-replace-recipe').text($(ev.currentTarget).data('recipe-name'));
+			var $el = $(ev.currentTarget),
+				$modal = this.$modal.delete;
+			this.currentRecipeId = $el.data('recipe-id');
+			$modal.find('.js-replace-recipe').text($el.data('recipe-name'));
 			$modal.find('.js-delete-it').off().on('click', this.onConfirmDeletion);
 			$modal.modal('show');
 		};
 
 		this.onConfirmDeletion = function(ev) {
 			$.ajax({
-				url: '/project/ajax.php?api=deleteRecipe',
+				url: '/project/services/deleteCocktail.php',
 				type: 'POST',
-				data: $(ev.currentTarget).data('recipe-id'),
+				data: { 'recipe': this.currentRecipeId },
 				success: this.onDeleteRecipeSuccess,
 				error: this.onDeleteRecipeError
 			});
