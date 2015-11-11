@@ -14,14 +14,13 @@
 	header('Content-Type: application/json; charset=utf-8');
 	echo '{ "users": [';
 	while ($key = mysqli_fetch_array($res)) {
-		$admin = empty($key['ADMIN']) ? 'true' : 'false';
 		$lastRow = ($i < $count) ? '},' : '}';
 		echo '{'
 			.'"id": "' .$key['U_ID'] .'",'
 			.'"forename": "' .$key['VORNAME'] .'",'
 			.'"surename": "' .$key['NAME'] .'",'
 			.'"email": "' .$key['EMAIL'] .'",';
-		echo '"isAdmin": ' .$admin .'';
+		echo '"isAdmin": ' .$key['ADMIN'] .'';
 		echo $lastRow;
 		$i++;
 	}
