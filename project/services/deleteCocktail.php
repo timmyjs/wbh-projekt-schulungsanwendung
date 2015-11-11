@@ -17,10 +17,6 @@ $delete_recipe = "DELETE FROM REZEPTE WHERE R_ID = $recipeID";
 //Hier muss das Rezept noch aus der REZEPTE Tabelle und der Statistik entfernt werden
 $delete_ingredient = "DELETE FROM ZUORDNUNG WHERE R_ID = $recipeID";
 
-//$args = array('{recipe}' => $recipeID);
-var_dump($delete_ingredient);
-var_dump($delete_recipe);
-
 //Fehlermeldung, wenn die Werte nicht gelöscht werden konnten
 if (mysqli_query($db, $delete_ingredient) && mysqli_query($db, $delete_recipe)) {
     echo '{' . '"success": true' . '}';
