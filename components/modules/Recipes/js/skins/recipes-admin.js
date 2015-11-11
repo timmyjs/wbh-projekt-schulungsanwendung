@@ -139,7 +139,7 @@
 				addIt;
 
 			parent.recipes.recipes.some(function(item) {
-				if(that.currentRecipeId === item.id) return currentIngredients = item.ingredients;
+				if(parseInt(that.currentRecipeId) === parseInt(item.id)) return currentIngredients = item.ingredients;
 			});
 
 			this.ingredients.ingredients.forEach(function(item) {
