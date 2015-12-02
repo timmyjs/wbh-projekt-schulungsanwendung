@@ -78,7 +78,7 @@
 		};
 
 		this.onGetIngredientsSuccess = function(data) {
-			this.ingredients = data;
+			this.ingredients = JSON.parse(data);
 		};
 
 		this.onGetIngredientsError = function(err) {
@@ -206,7 +206,7 @@
 			});
 		};
 
-		this.onCreateRecipeSuccess = function(data) {
+		this.onCreateRecipeSuccess = function() {
 			this.$modal.new.modal('hide');
 			parent.getRecipes();
 		};
