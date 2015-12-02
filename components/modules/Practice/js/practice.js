@@ -18,6 +18,7 @@
 		},
 
 		on: function(callback) {
+			var mod = this;
 			this.bindAll(
 				'onGetNewRecipeSuccess',
 				'onGetNewRecipeError',
@@ -35,6 +36,9 @@
 			this.$ctx.on('resolved', this.resolveRecipe);
 			this.$('.js-practice-form').on('submit', this.onSubmitPracticeForm);
 			this.$('.js-cancel').on('click', this.finishPractice);
+			this.$('.js-get-next-recipe').on('click', function(){
+				mod.$ctx.trigger('resolved');
+			});
 			this.getIngredients();
 			this.getNewRecipe();
 			// do not remove
@@ -131,13 +135,16 @@
 		},
 
 		onSubmitPracticeFormSuccess: function(data) {
+			var self = this;
+			data = JSON.parse(data);
 			if(data.result === 'right'){
 				this.rightAnswers += 1;
+				this.$('.js-alert-success').removeClass('hidden');
 			}
 			else if(data.result === 'wrong'){
 				this.wrongAnswers += 1;
+				this.$('.js-alert-fail').removeClass('hidden');
 			}
-			this.$ctx.trigger('resolved');
 		},
 
 		onSubmitPracticeFormError: function(err) {
@@ -165,6 +172,7 @@
 
 		resetSelection: function() {
 			this.$('.js-pick-ingredient').removeClass('selected');
+			this.$('.js-alert-success, .js-alert-fail').addClass('hidden');
 			this.ingredients = [];
 			this.$ctx.trigger('updateIngredients');
 		},
