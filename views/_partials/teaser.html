@@ -1,4 +1,4 @@
-<article class="teaser">
+<a class="teaser <?php if(isset($data['class'])) echo $data['class']; ?>" href="<?= $data['linkurl']; ?>">
 	<figure>
 		<img src="<?= $data['img'];?>" alt="Teaserimage">
 	</figure>
@@ -6,10 +6,5 @@
 		<h4>
 			<?= $data['heading']; ?>
 		</h4>
-		<a <?php if(isset($data['class'])){ ?>class="<?= $data['class']; ?>"<?php } ?> href="<?= $data['linkurl']; ?>">
-			<?= $data['linktext']; ?>
-		</a>
 	</div>
-</article>
-
-
+</a>
