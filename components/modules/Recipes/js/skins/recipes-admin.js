@@ -78,7 +78,7 @@
 		};
 
 		this.onGetIngredientsSuccess = function(data) {
-			this.ingredients = JSON.parse(data);
+			this.ingredients = (typeof data === 'string') ? JSON.parse(data) : data;
 		};
 
 		this.onGetIngredientsError = function(err) {

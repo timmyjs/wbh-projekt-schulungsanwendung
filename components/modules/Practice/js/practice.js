@@ -135,8 +135,7 @@
 		},
 
 		onSubmitPracticeFormSuccess: function(data) {
-			var self = this;
-			data = JSON.parse(data);
+			data = (typeof data === 'string') ? JSON.parse(data) : data;
 			if(data.result === 'right'){
 				this.rightAnswers += 1;
 				this.$('.js-alert-success').removeClass('hidden');

@@ -36,7 +36,7 @@
 		},
 
 		onGetRecipesSuccess: function(data) {
-			this.recipes = JSON.parse(data);
+			this.recipes = (typeof data === 'string') ? JSON.parse(data) : data;
 			this.renderRecipeList();
 		},
 
